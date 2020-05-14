@@ -41,7 +41,7 @@ function PartnerModule({ partners, locations, capabilities }) {
 		setExpandedPartner('')
 	}
 
-	const expandPartnerCard = (id) => {
+	const expandPartnerCard = id => {
 		if (expandedPartner === id) {
 			setExpandedPartner('')
 		} else {
@@ -65,8 +65,8 @@ function PartnerModule({ partners, locations, capabilities }) {
 			<div className='partner-list'>
 				{partners
 					.filter(p => {
-						let matchesLocations = p.locations.map(l => locationFilters.includes(l)).includes(true)
-						let matchesCapabilities = p.capabilities.map(c => capabilityFilters.includes(c)).includes(true)
+						const matchesLocations = p.locations.map(l => locationFilters.includes(l)).includes(true)
+						const matchesCapabilities = p.capabilities.map(c => capabilityFilters.includes(c)).includes(true)
 						return ((matchesLocations || !locationFilters.length) && (matchesCapabilities || !capabilityFilters.length))
 					})
 					.map((p, i) => <PartnerCard key={i} partner={p} expanded={expandedPartner === p.id} onClick={() => expandPartnerCard(p.id)} />)
@@ -99,21 +99,72 @@ function PartnerCard({ partner, expanded, onClick }) {
 	)
 }
 
-function FreeTheBidModule({ freeTheBidders }) {
+function FreeTheBidModule({ freeTheBidders, ftbRoles }) {
 	const [roleFilters, setRoleFilters] = useState([])
 	const [expandedBidder, setExpandedBidder] = useState('')
 
-	console.log(freeTheBidders)
+	const filterList = filter => {
+		let filters = [...roleFilters]
+		let index = -1
+		if (!filter) {
+			filters = []
+		} else {
+			index = filters.indexOf(filter)
+			if (index > -1) {
+				filters.splice(index, 1)
+			} else {
+				filters.push(filter)
+			}
+		}
+		setRoleFilters(filters)
+		setExpandedBidder('')
+	}
+
+	const expandBidderCard = id => {
+		console.log('expanding')
+		if (expandedBidder === id) {
+			setExpandedBidder('')
+		} else {
+			setExpandedBidder(id)
+		}
+	}
 
 	return (
-		<div className='freeTheBid-module'>
+		<div className='ftb-module'>
 			<h2>Free the Bid</h2>
+			<div className='ftb-filters'>
+				<div className='ftb-filters-roles'>
+					<FilterItem name='All' onClick={() => filterList()} selected={!roleFilters.length} />
+					{ftbRoles.map((r, i) => <FilterItem key={i} name={r} onClick={() => filterList(r)} selected={roleFilters.includes(r)} />)}
+				</div>
+			</div>
+			<div className='ftb-list'>
+				{freeTheBidders
+					.filter(b => {
+						const matchesRole = roleFilters.includes(b.role)
+						return matchesRole || !roleFilters.length
+					})
+					.map((b, i) => <FreeTheBidCard key={i} freeTheBidder={b} expanded={expandedBidder === b.id} onClick={() => expandBidderCard(b.id)} />)
+				}
+			</div>
 		</div>
 	)
 }
 
-function FreeTheBidCard({ freeTheBidder }) {
-
+function FreeTheBidCard({ freeTheBidder, expanded, onClick }) {
+	return (
+		<div className='ftb-card' onClick={() => onClick()}>
+			<h3 className='ftb-card-name'>{freeTheBidder.firstName + ' ' + freeTheBidder.lastName}</h3>
+			<p className='ftb-card-role'>{freeTheBidder.role}</p>
+			{expanded ?
+				<div className='ftb-card-info'>
+					<p className='ftb-card-partner'>Partnered with <a href={freeTheBidder.partner.site} target='_blank'>{freeTheBidder.partner.name}</a></p>
+					<p className='ftb-card-site'><a href={freeTheBidder.site} target='_blank'>Learn More</a></p>
+				</div> :
+				''
+			}
+		</div>
+	)
 }
 
 export default function Partners({ partners, locations, capabilities, freeTheBidders, ftbRoles }) {
@@ -125,7 +176,7 @@ export default function Partners({ partners, locations, capabilities, freeTheBid
 			<h1>Who We Work With</h1>
 			{module === 'partners' ? 
 				<PartnerModule partners={partners} locations={locations} capabilities={capabilities} /> :
-				<FreeTheBidModule freeTheBidders={freeTheBidders} />}
+				<FreeTheBidModule freeTheBidders={freeTheBidders} ftbRoles={ftbRoles} />}
 		</Layout>
 	)
 }
