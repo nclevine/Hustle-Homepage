@@ -1,21 +1,31 @@
-import Head from 'next/head'
-import { getCopy } from '../lib/api'
+import Layout from '../components/layout'
+import { getCopy, getCapabilities } from '../lib/api'
+
+export default function Index({ copy, capabilities }) {
+	return (
+		<Layout>
+			<div className="intro">
+				<h1>HUSTLE</h1>
+				<h2>{copy[1].text}</h2>
+			</div>
+			<div className="about">
+				<h3>What We Do</h3>
+				<p>{copy[0].text}</p>
+				<h3>Our Capabilities</h3>
+				<ul>
+					{capabilities.map((c, i) => <li key={'capability-' + i}>{c}</li>)}
+				</ul>
+			</div>
+		</Layout>
+	)
+}
 
 export async function getStaticProps() {
 	const copy = await getCopy()
+	const capabilities = await getCapabilities()
+
 	return {
-		props: { copy }
+		props: { copy, capabilities }
 	}
 }
 
-export default function Index(props) {
-	console.log(props.copy)
-	return (
-		<>
-			<Head>
-				<title>HUSTLE</title>
-			</Head>
-			<h1>Hello!</h1>
-		</>
-	)
-}
