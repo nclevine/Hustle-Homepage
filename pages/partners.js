@@ -51,15 +51,19 @@ function PartnerModule({ partners, locations, capabilities }) {
 
 	return (
 		<div className='partner-module'>
-			<h2>Our Partners</h2>
 			<div className='partner-filters'>
-				<div className='partner-filters-locations'>
-					<FilterItem name='All' onClick={() => filterList(null, 'location')} selected={!locationFilters.length} />
-					{locations.map((l, i) => <FilterItem key={i} name={l} onClick={() => filterList(l, 'location')} selected={locationFilters.includes(l)} />)}
-				</div>
-				<div className='partner-filters-capabilities'>
-					<FilterItem name='All' onClick={() => filterList(null, 'capability')} selected={!capabilityFilters.length} />
-					{capabilities.map((c, i) => <FilterItem key={i} name={c} onClick={() => filterList(c, 'capability')} selected={capabilityFilters.includes(c)} />)}
+				<p>Filter</p>
+				<div className='partner-filters-inner'>
+					<div className='partner-filters-locations'>
+						<p>By Location</p>
+						<FilterItem name='All' onClick={() => filterList(null, 'location')} selected={!locationFilters.length} />
+						{locations.map((l, i) => <FilterItem key={i} name={l} onClick={() => filterList(l, 'location')} selected={locationFilters.includes(l)} />)}
+					</div>
+					<div className='partner-filters-capabilities'>
+						<p>By Capability</p>
+						<FilterItem name='All' onClick={() => filterList(null, 'capability')} selected={!capabilityFilters.length} />
+						{capabilities.map((c, i) => <FilterItem key={i} name={c} onClick={() => filterList(c, 'capability')} selected={capabilityFilters.includes(c)} />)}
+					</div>
 				</div>
 			</div>
 			<div className='partner-list'>
@@ -72,6 +76,12 @@ function PartnerModule({ partners, locations, capabilities }) {
 					.map((p, i) => <PartnerCard key={i} partner={p} expanded={expandedPartner === p.id} onClick={() => expandPartnerCard(p.id)} />)
 				}
 			</div>
+
+			<style jsx>{`
+				.partner-filters-inner {
+					display: flex;
+				}
+			`}</style>
 		</div>
 	)
 }
@@ -130,7 +140,6 @@ function FreeTheBidModule({ freeTheBidders, ftbRoles }) {
 
 	return (
 		<div className='ftb-module'>
-			<h2>Free the Bid</h2>
 			<div className='ftb-filters'>
 				<div className='ftb-filters-roles'>
 					<FilterItem name='All' onClick={() => filterList()} selected={!roleFilters.length} />
@@ -166,16 +175,51 @@ function FreeTheBidCard({ freeTheBidder, expanded, onClick }) {
 	)
 }
 
+function ModuleToggle({ text, selected, onClick }) {
+	let className = 'module-toggle'
+	if(!selected) {
+		className += ' deselected'
+	}
+
+	return (
+		<div className={className} onClick={() => onClick()}>
+			<h2>{text}</h2>
+
+			<style jsx>{`
+				.deselected {
+					font-size: 75%;
+				}
+			`}</style>
+		</div>
+	)
+}
+
 export default function Partners({ partners, locations, capabilities, freeTheBidders, ftbRoles }) {
-	// const [module, setModule] = useState('partners')
-	const [module, setModule] = useState('ftb')
+	const [module, setModule] = useState('partners')
+
+	const toggleModule = m => {
+		if(m === module) {
+			return
+		}
+		setModule(m)
+	}
 
 	return (
 		<Layout subtitle='Our Partners'>
 			<h1>Who We Work With</h1>
+			<div className='partner-module-toggles'>
+				<ModuleToggle text='Our Partners' selected={module === 'partners'} onClick={() => toggleModule('partners')} />
+				<ModuleToggle text='Free the Bid' selected={module === 'ftb'} onClick={() => toggleModule('ftb')} />
+			</div>
 			{module === 'partners' ? 
 				<PartnerModule partners={partners} locations={locations} capabilities={capabilities} /> :
 				<FreeTheBidModule freeTheBidders={freeTheBidders} ftbRoles={ftbRoles} />}
+			
+			<style jsx>{`
+				.partner-module-toggles {
+					display: flex;
+				}
+			`}</style>
 		</Layout>
 	)
 }

@@ -4,3 +4,8 @@
 	padding: 0;
 	font-family: sans-serif;
 }
+
+html {
+	background-color: #111;
+	color: #eee;
+}
