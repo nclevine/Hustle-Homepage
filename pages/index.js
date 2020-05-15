@@ -1,5 +1,5 @@
 import Layout from '../components/layout'
-import { getCopy, getCapabilities } from '../lib/api'
+import { getCopy, getCapabilities } from '../lib/contentful-api'
 
 export default function Index({ copy, capabilities }) {
 	return (

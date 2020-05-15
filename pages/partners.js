@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { getPartners, getLocations, getCapabilities, getFreeTheBidders, getFTBRoles } from '../lib/api'
+import { getPartners, getLocations, getCapabilities, getFreeTheBidders, getFTBRoles } from '../lib/contentful-api'
 import Layout from '../components/layout'
 
 function FilterItem({ name, onClick, selected }) {
@@ -121,7 +121,6 @@ function FreeTheBidModule({ freeTheBidders, ftbRoles }) {
 	}
 
 	const expandBidderCard = id => {
-		console.log('expanding')
 		if (expandedBidder === id) {
 			setExpandedBidder('')
 		} else {
