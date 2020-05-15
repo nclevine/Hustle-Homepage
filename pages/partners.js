@@ -15,9 +15,28 @@ function FilterItem({ name, onClick, selected }) {
 	)
 }
 
+function CurrentFilterItem({ filter, onClick }) {
+	return (
+		<Text onClick={() => onClick()} sx={{
+			p: 1,
+			mr: 1,
+			bg: 'secondary',
+			color: 'light',
+			cursor: 'pointer',
+			':hover': {
+				'span': {
+					color: 'primary'
+				}
+			}
+		}}>{filter} <span>X</span></Text>
+	)
+}
+
 function PartnerModule({ partners, locations, capabilities }) {
 	const [locationFilters, setLocationFilters] = useState([])
+	const [locationFiltersExpanded, setLocationFiltersExpanded] = useState(false)
 	const [capabilityFilters, setCapabilityFilters] = useState([])
+	const [capabilityFiltersExpanded, setCapabilityFiltersExpanded] = useState(false)
 	const [expandedPartner, setExpandedPartner] = useState('')
 
 	const filterList = (filter, type) => {
@@ -50,23 +69,47 @@ function PartnerModule({ partners, locations, capabilities }) {
 	}
 
 	return (
-		<div className='partner-module'>
-			<div className='partner-filters'>
-				<p>Filter</p>
-				<div className='partner-filters-inner'>
-					<div className='partner-filters-locations'>
-						<p>By Location</p>
-						<FilterItem name='All' onClick={() => filterList(null, 'location')} selected={!locationFilters.length} />
-						{locations.map((l, i) => <FilterItem key={i} name={l} onClick={() => filterList(l, 'location')} selected={locationFilters.includes(l)} />)}
-					</div>
-					<div className='partner-filters-capabilities'>
-						<p>By Capability</p>
-						<FilterItem name='All' onClick={() => filterList(null, 'capability')} selected={!capabilityFilters.length} />
-						{capabilities.map((c, i) => <FilterItem key={i} name={c} onClick={() => filterList(c, 'capability')} selected={capabilityFilters.includes(c)} />)}
-					</div>
-				</div>
-			</div>
-			<div className='partner-list'>
+		<Box className='partner-module'>
+			<Box className='partner-filters' sx={{
+				// bg: 'light'
+				color: 'light'
+			}}>
+				<Flex>
+					<Text>Filter by:</Text>
+					<Box className='partner-filters-locations'>
+						<Text onClick={e => setLocationFiltersExpanded(!locationFiltersExpanded)}>Location</Text>
+						<Box sx={{
+							height: locationFiltersExpanded ? 'auto' : 0,
+							overflow: 'hidden'
+						}}>
+							<FilterItem name='All' onClick={() => filterList(null, 'location')} selected={!locationFilters.length} />
+							{locations.map((l, i) => <FilterItem key={i} name={l} onClick={() => filterList(l, 'location')} selected={locationFilters.includes(l)} />)}
+						</Box>
+					</Box>
+					<Box className='partner-filters-capabilities'>
+						<Text onClick={e => setCapabilityFiltersExpanded(!capabilityFiltersExpanded)}>Capability</Text>
+						<Box sx={{
+							height: capabilityFiltersExpanded ? 'auto' : 0,
+							overflow: 'hidden'
+						}}>
+							<FilterItem name='All' onClick={() => filterList(null, 'capability')} selected={!capabilityFilters.length} />
+							{capabilities.map((c, i) => <FilterItem key={i} name={c} onClick={() => filterList(c, 'capability')} selected={capabilityFilters.includes(c)} />)}
+						</Box>
+					</Box>
+				</Flex>
+				{locationFilters.length || capabilityFilters.length ? 
+					<Box className='current-filters'>
+						<Flex>
+							{locationFilters.map((f, i) => <CurrentFilterItem key={i} filter={f} onClick={() => filterList(f, 'location')} />)}
+							{capabilityFilters.map((f, i) => <CurrentFilterItem key={i} filter={f} onClick={() => filterList(f, 'capability')} />)}
+						</Flex>
+					</Box> :
+					''
+				}
+			</Box>
+			<Flex className='partner-list' sx={{
+				flexWrap: 'wrap'
+			}}>
 				{partners
 					.filter(p => {
 						const matchesLocations = p.locations.map(l => locationFilters.includes(l)).includes(true)
@@ -75,31 +118,40 @@ function PartnerModule({ partners, locations, capabilities }) {
 					})
 					.map((p, i) => <PartnerCard key={i} partner={p} expanded={expandedPartner === p.id} onClick={() => expandPartnerCard(p.id)} />)
 				}
-			</div>
-		</div>
+			</Flex>
+		</Box>
 	)
 }
 
 function PartnerCard({ partner, expanded, onClick }) {
 	return (
-		<div className='partner-card' onClick={() => onClick()}>
-			<h3 className='partner-card-name'>{partner.name}</h3>
-			<div className='partner-card-image'><img src={partner.logo} /></div>
+		<Box className='partner-card' onClick={() => onClick()} sx={{
+			width: expanded ? '100%' : [ '100%', '50%', '33%' ],
+			order: expanded ? -1 : 0
+		}}>
+			<Heading className='partner-card-name'>{partner.name}</Heading>
+			<Box className='partner-card-image'><img src={partner.logo} /></Box>
 			{expanded ? 
 				(
-					<div className='partner-card-info'>
-						<p className='partner-card-link'><a href={partner.site} target='_blank'>Visit</a></p>
-						<div className='partner-card-locations'>
-							{partner.locations.map((l, i) => <p key={i} className='partner-card-location'>{l}</p>)}
-						</div>
-						<div className='partner-card-capabilities'>
-							{partner.capabilities.map((c, i) => <p key={i} className='partner-card-capability'>{c}</p>)}
-						</div>
-					</div>
+					<Box className='partner-card-info'>
+						<Text className='partner-card-link'>
+							<a href={partner.site} target='_blank'>Visit</a>
+						</Text>
+						<Box className='partner-card-locations'>
+							{partner.locations.map((l, i) => (
+								<Text key={i} className='partner-card-location'>{l}</Text>
+							))}
+						</Box>
+						<Box className='partner-card-capabilities'>
+							{partner.capabilities.map((c, i) => (
+								<Text key={i} className='partner-card-capability'>{c}</Text>
+							))}
+						</Box>
+					</Box>
 				) :
 				''
 			}
-		</div>
+		</Box>
 	)
 }
 
@@ -170,15 +222,18 @@ function FreeTheBidCard({ freeTheBidder, expanded, onClick }) {
 }
 
 function ModuleToggle({ text, selected, onClick }) {
-	let className = 'module-toggle'
-	if(!selected) {
-		className += ' deselected'
-	}
-
 	return (
-		<div className={className} onClick={() => onClick()}>
-			<h2>{text}</h2>
-		</div>
+		<Box onClick={() => onClick()} sx={{
+			mx: [ 2, 3, 4 ]
+		}}>
+			<Heading variant={selected ? 'mHeading' : 'sHeading'} sx={{
+				cursor: 'pointer',
+				transition: 'color 0.2s',
+				':hover': {
+					color: selected ? 'light' : 'primary'
+				}
+			}}>{text}</Heading>
+		</Box>
 	)
 }
 
@@ -193,16 +248,27 @@ export default function Partners({ partners, locations, capabilities, freeTheBid
 	}
 
 	return (
-		<>
-			<h1>Who We Work With</h1>
-			<div className='partner-module-toggles'>
+		<Box>
+			<Heading variant='lHeading' sx={{
+				p: [ 20, 30, 40]
+			}}>Who We Work With</Heading>
+			<Flex sx={{
+				p: [ 20, 30, 40],
+				pt: [ 0, 0, 0 ],
+				justifyContent: 'center',
+				alignItems: 'center'
+			}}>
 				<ModuleToggle text='Our Partners' selected={module === 'partners'} onClick={() => toggleModule('partners')} />
 				<ModuleToggle text='Free the Bid' selected={module === 'ftb'} onClick={() => toggleModule('ftb')} />
-			</div>
-			{module === 'partners' ? 
-				<PartnerModule partners={partners} locations={locations} capabilities={capabilities} /> :
-				<FreeTheBidModule freeTheBidders={freeTheBidders} ftbRoles={ftbRoles} />}
-		</>
+			</Flex>
+			<Box sx={{
+				p: [ 20, 30, 40]
+			}}>
+				{module === 'partners' ? 
+					<PartnerModule partners={partners} locations={locations} capabilities={capabilities} /> :
+					<FreeTheBidModule freeTheBidders={freeTheBidders} ftbRoles={ftbRoles} />}
+			</Box>
+		</Box>
 	)
 }
 

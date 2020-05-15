@@ -42,7 +42,9 @@ const theme = {
     sHeading: {
       fontFamily: 'heading',
       fontWeight: 'sHeading',
-      fontSize: [ 3, 4, 5 ]
+      fontSize: [ 3, 4, 5 ],
+      color: 'secondary',
+      fontStyle: 'italic'
     },
     mHeading: {
       fontFamily: 'heading',
