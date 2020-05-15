@@ -31,6 +31,7 @@ const theme = {
   },
   radii: {
     default: 4,
+    exaggerated: 40,
     circle: 99999,
   },
   shadows: {
@@ -40,23 +41,26 @@ const theme = {
   text: {
     sHeading: {
       fontFamily: 'heading',
-      fontWeight: 'sHeading'
+      fontWeight: 'sHeading',
+      fontSize: [ 3, 4, 5 ]
     },
     mHeading: {
       fontFamily: 'heading',
-      fontWeight: 'mHeading'
+      fontWeight: 'mHeading',
+      fontSize: [ 4, 5, 6 ],
+      color: 'light'
     },
     lHeading: {
       fontFamily: 'heading',
       fontWeight: 'lHeading',
       fontStyle: 'italic',
-      fontSize: [ 5, 6, 7 ]
-    },
-    display: {
-      fontFamily: 'heading',
-      fontWeight: 'heading',
-      lineHeight: 'heading',
       fontSize: [ 5, 6, 7 ],
+      color: 'primary'
+    },
+    largeCopy: {
+      fontFamily: 'body',
+      fontWeight: 'bold',
+      fontSize: [ 3, 4, 5 ]
     },
     caps: {
       textTransform: 'uppercase',

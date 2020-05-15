@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { getPartners, getLocations, getCapabilities, getFreeTheBidders, getFTBRoles } from '../lib/contentful-api'
+import { Box, Flex, Text, Heading } from 'rebass'
 
 function FilterItem({ name, onClick, selected }) {
 	let className = 'filter-item'

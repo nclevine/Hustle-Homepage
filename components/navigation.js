@@ -50,7 +50,7 @@ export default function Navigation({ isHome }) {
 		}}>
 			<Box sx={{
 				'@media screen and (max-width: 40em)': {
-					width: '50%'
+					ml: isHome ? mobileNavExpanded ? 0 : 'calc(50% - 100px)' : 0,
 				}
 			}}>
 				<NavLink route='/' onClick={e => closeMobileNav(e)}>
@@ -68,11 +68,13 @@ export default function Navigation({ isHome }) {
 							}
 						},
 						'@media screen and (max-width: 40em)': {
-							width: isHome ? mobileNavExpanded ? 75 : 200 : 75 
+							width: isHome ? mobileNavExpanded ? 75 : 200 : 75,
+							mr: 0
 						}
 					}} />
 				</NavLink>
 			</Box>
+			
 			<Box className='nav-mobile-hamburger' onClick={e => toggleMobileNav(e)} sx={{
 				display: 'none',
 				mt: 25,
