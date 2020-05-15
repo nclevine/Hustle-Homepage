@@ -1,5 +1,4 @@
 import { getTeamMembers } from '../lib/contentful-api'
-import Layout from '../components/layout'
 
 function TeamMember({ teamMember }) {
 	return (
@@ -23,14 +22,16 @@ function TeamMember({ teamMember }) {
 
 export default function Team({ teamMembers }) {
 	return (
-		<Layout>
+		<>
 			<h1>Our Team</h1>
 			<div className='team-members'>
 				{teamMembers.map((t, i) => <TeamMember key={i} teamMember={t} />)}
 			</div>
-		</Layout>
+		</>
 	)
 }
+
+Team.subtitle = 'Our Team'
 
 export async function getStaticProps() {
 	const teamMembers = await getTeamMembers()

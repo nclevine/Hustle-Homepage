@@ -1,11 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Prompt:ital,wght@0,500;0,700;1,800&display=swap');
+
 * {
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
-	font-family: sans-serif;
 }
 
-html {
-	background-color: #111;
-	color: #eee;
+html, body {
+	min-width: 100vw;
+	min-height: 100vh;
 }

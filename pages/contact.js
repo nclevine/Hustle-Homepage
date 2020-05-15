@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { getAbbreviatedCapabilities } from '../lib/contentful-api'
 import { sendEmail } from '../lib/emailjs-api'
-import Layout from '../components/layout'
 
 export default function Contact({ emailSubjects }) {
 	const [emailSent, setEmailSent] = useState(false)
@@ -40,7 +39,7 @@ export default function Contact({ emailSubjects }) {
 
 
 	return (
-		<Layout>
+		<>
 			<h1>Contact Us</h1>
 			<div className='contact-email-form-container'>
 				{!emailSent ? 
@@ -62,9 +61,11 @@ export default function Contact({ emailSubjects }) {
 				<input type='email' name='email' placeholder='Email' />
 				<input type='submit' name='submit' value='Sign Up' />
 			</form>
-		</Layout>
+		</>
 	)
 }
+
+Contact.subtitle = 'Contact Us'
 
 export async function getStaticProps() {
 	const emailSubjects = await getAbbreviatedCapabilities()

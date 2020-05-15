@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { getPartners, getLocations, getCapabilities, getFreeTheBidders, getFTBRoles } from '../lib/contentful-api'
-import Layout from '../components/layout'
 
 function FilterItem({ name, onClick, selected }) {
 	let className = 'filter-item'
@@ -76,12 +75,6 @@ function PartnerModule({ partners, locations, capabilities }) {
 					.map((p, i) => <PartnerCard key={i} partner={p} expanded={expandedPartner === p.id} onClick={() => expandPartnerCard(p.id)} />)
 				}
 			</div>
-
-			<style jsx>{`
-				.partner-filters-inner {
-					display: flex;
-				}
-			`}</style>
 		</div>
 	)
 }
@@ -90,7 +83,7 @@ function PartnerCard({ partner, expanded, onClick }) {
 	return (
 		<div className='partner-card' onClick={() => onClick()}>
 			<h3 className='partner-card-name'>{partner.name}</h3>
-			<div className='partner-card-image'><img src={partner.logo} style={{width: '100%'}} /></div>
+			<div className='partner-card-image'><img src={partner.logo} /></div>
 			{expanded ? 
 				(
 					<div className='partner-card-info'>
@@ -184,12 +177,6 @@ function ModuleToggle({ text, selected, onClick }) {
 	return (
 		<div className={className} onClick={() => onClick()}>
 			<h2>{text}</h2>
-
-			<style jsx>{`
-				.deselected {
-					font-size: 75%;
-				}
-			`}</style>
 		</div>
 	)
 }
@@ -205,7 +192,7 @@ export default function Partners({ partners, locations, capabilities, freeTheBid
 	}
 
 	return (
-		<Layout subtitle='Our Partners'>
+		<>
 			<h1>Who We Work With</h1>
 			<div className='partner-module-toggles'>
 				<ModuleToggle text='Our Partners' selected={module === 'partners'} onClick={() => toggleModule('partners')} />
@@ -214,15 +201,11 @@ export default function Partners({ partners, locations, capabilities, freeTheBid
 			{module === 'partners' ? 
 				<PartnerModule partners={partners} locations={locations} capabilities={capabilities} /> :
 				<FreeTheBidModule freeTheBidders={freeTheBidders} ftbRoles={ftbRoles} />}
-			
-			<style jsx>{`
-				.partner-module-toggles {
-					display: flex;
-				}
-			`}</style>
-		</Layout>
+		</>
 	)
 }
+
+Partners.subtitle = 'Our Partners'
 
 export async function getStaticProps() {
 	const partners = await getPartners()
