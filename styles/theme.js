@@ -1,8 +1,8 @@
 const theme = {
   breakpoints: ['40em', '52em', '64em'],
   colors: {
-    dark: '#111',
-    light: '#eee',
+    dark: '#101010',
+    light: '#efefef',
     primary: '#d21997',
     secondary: '#4F0939',
   },
@@ -43,8 +43,14 @@ const theme = {
       fontFamily: 'heading',
       fontWeight: 'sHeading',
       fontSize: [ 3, 4, 5 ],
-      color: 'primary',
+      color: 'secondary',
       fontStyle: 'italic'
+    },
+    sHeadingAlt: {
+      fontFamily: 'heading',
+      fontWeight: 'mHeading',
+      fontSize: [ 3, 4, 5 ],
+      color: 'primary',
     },
     mHeading: {
       fontFamily: 'heading',
@@ -63,7 +69,9 @@ const theme = {
     largeCopy: {
       fontFamily: 'body',
       fontWeight: 'bold',
-      fontSize: [ 3, 4, 5 ]
+      fontSize: [ 3, 4, 5 ],
+      lineHeight: 'body',
+      p: [ 20, 30, 40 ]
     },
     smallCaps: {
       textTransform: 'uppercase',
@@ -108,6 +116,35 @@ const theme = {
         color: 'primary',
       }
     },
+    contactInput: {
+      'input, select, textarea': {
+        fontSize: [ 1 ],
+        fontWeight: 'bold',
+        bg: 'light',
+        borderRadius: 0,
+        borderWidth: 0,
+        fontFamily: 'body',
+        outline: 'none',
+        '&:focus': {
+          color: 'light',
+          bg: 'primary',
+          '::placeholder': {
+            color: 'secondary'
+          }
+        },
+        '::placeholder': {
+          textTransform: 'uppercase',
+        }
+      },
+      'input[type=submit]': {
+        textTransform: 'uppercase',
+        cursor: 'pointer',
+        ':hover': {
+          color: 'light',
+          bg: 'primary'
+        }
+      }
+    }
   },
   buttons: {
     primary: {

@@ -1,4 +1,5 @@
-import { Box, Flex, Heading, Text, Link, Image } from 'rebass'
+import { Box, Flex, Heading, Text } from 'rebass'
+import { Label, Input, Select, Textarea } from '@rebass/forms'
 import { useState } from 'react'
 import { getAbbreviatedCapabilities } from '../lib/contentful-api'
 import { sendEmail } from '../lib/emailjs-api'
@@ -40,28 +41,48 @@ export default function Contact({ emailSubjects }) {
 
 
 	return (
-		<Box>
+		<Box sx={{pb: [ 20, 30, 40 ]}}>
 			<Heading variant='lHeading'>Contact Us</Heading>
-			<Box className='contact-email-form-container'>
-				{!emailSent ? 
-					<form className='contact-email-form' onSubmit={e => onEmailSubmit(e)}>
-					    <input type='text' name='name' placeholder='Name' onChange={e => onNameChange(e)} />
-					    <input type='email' name='email' placeholder='Email' onChange={e => onEmailChange(e)} />
-					    <select value={subjectCapability} onChange={e => onSubjectChange(e)}>
-					    	<option defaultValue value=''>Subject</option>
+			{!emailSent ? 
+				<Box variant='contactInput' as='form' onSubmit={e => onEmailSubmit(e)} sx={{
+					width: [ '80%', '75%', '50%' ],
+					m: '0 auto'
+				}}>
+			    	<Input type='text' name='name' placeholder='Name' onChange={e => onNameChange(e)} />
+				    <Box sx={{pt: [ 2, 3, 4 ]}}>
+				    	<Input type='email' name='email' placeholder='Email' onChange={e => onEmailChange(e)} />
+				    </Box>
+				    <Box sx={{pt: [ 2, 3, 4 ]}}>
+					    <Select value={subjectCapability} onChange={e => onSubjectChange(e)}>
+					    	<option defaultValue value=''>SUBJECT</option>
 					    	{emailSubjects.map((s, i) => <option key={i} value={s}>{s}</option>)}
-					    </select>
-					    <textarea name='message' placeholder='Enter your message here' onChange={e => onMessageChange(e)}></textarea>
-					    <input type='submit' name='submit' value='Send' />
-					</form> :
-					<h3 className='contact-email-sent'>Thanks for your message!</h3>
-				}
+					    </Select>
+				    </Box>
+					<Box sx={{pt: [ 2, 3, 4 ]}}>
+				    	<Textarea name='message' placeholder='Enter your message here' onChange={e => onMessageChange(e)} sx={{height: [ 100, 150, 200 ]}}></Textarea>
+				    </Box>
+					<Box sx={{pt: [ 2, 3, 4 ]}}>
+					    <Input type='submit' name='submit' value='Send' />
+					</Box>
+				</Box> :
+				<Heading variant='sHeadingAlt' sx={{
+					p: [ 20, 30, 40 ]
+				}}>Thanks for your message!</Heading>
+			}
+			<Heading variant='mHeading' sx={{
+				p: [ 20, 30, 40 ]
+			}}>Receive Our Mailing List</Heading>
+			<Box variant='contactInput' as='form' sx={{
+				width: [ '80%', '75%', '50%' ],
+				m: '0 auto'
+			}}>
+				<Box sx={{pt: [ 2, 3, 4 ]}}>
+					<Input type='email' name='email' placeholder='Email' />
+				</Box>
+				<Box sx={{pt: [ 2, 3, 4 ]}}>
+					<Input type='submit' name='submit' value='Sign Up' />
+				</Box>
 			</Box>
-			<Heading variant='mHeading'>Receive Our Mailing List</Heading>
-			<form className='mailing-list-form'>
-				<input type='email' name='email' placeholder='Email' />
-				<input type='submit' name='submit' value='Sign Up' />
-			</form>
 		</Box>
 	)
 }

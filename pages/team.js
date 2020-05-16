@@ -7,8 +7,10 @@ function TeamMember({ teamMember }) {
 			<Image src={teamMember.headshot} sx={{
 				width: '100%'
 			}} />
-			<Heading variant='sHeading'>{teamMember.firstName + ' ' + teamMember.lastName}</Heading>
-			<Heading>{teamMember.title}</Heading>
+			<Heading variant='sHeadingAlt'>{teamMember.firstName + ' ' + teamMember.lastName}</Heading>
+			<Heading sx={{
+				fontStyle: 'italic'
+			}}>{teamMember.title}</Heading>
 			{teamMember.specialty ? 
 				<Text sx={{
 					fontWeight: 'bold'
@@ -39,6 +41,7 @@ export default function Team({ teamMembers }) {
 				gridTemplateColumns: [ 'repeat(3, 27%)' ],
 				gridGap: [ '2.5em' ],
 				justifyContent: 'center',
+				p: [ 20, 30, 40 ]
 			}}>
 				{teamMembers.map((t, i) => <TeamMember key={i} teamMember={t} />)}
 			</Box>

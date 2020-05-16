@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Box, Flex, Text, Heading } from 'rebass'
 import { getCopy, getCapabilities } from '../lib/contentful-api'
+import Carat from '../components/carat'
 
 export default function Index({ copy, capabilities }) {
 	return (
@@ -23,17 +24,20 @@ export default function Index({ copy, capabilities }) {
 				<Text variant='largeCopy' sx={{
 					color: 'primary'
 				}}>{copy[0].text}</Text>
-				<Box sx={{
+				<Heading sx={{
 					'a': {
 						color: 'dark',
 						textDecoration: 'none',
 						':hover': {
-							textDecoration: 'underline'
+							color: 'primary',
+							'svg': {
+								fill: 'primary'
+							}
 						}
 					}
 				}}>
-					<Link href='/team'><a>Meet the Team</a></Link>
-				</Box>
+					<Link href='/team'><a>Meet the Team <Carat sx={{transform: 'rotate(-90deg)'}} /></a></Link>
+				</Heading>
 			</Box>
 			<Box className='capabilities' sx={{
 				p: [ 20, 30, 40 ],
@@ -41,20 +45,14 @@ export default function Index({ copy, capabilities }) {
 				<Heading variant='mHeading'>Our Capabilities</Heading>
 				<Box sx={{
 					display: 'grid',
-					gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 3fr))',
-					gap: [ 3, 3, 4 ],
-					'@media screen and (max-width: 40em)': {
-						gridTemplateColumns: 'repeat(auto-fit, minmax(100px, 3fr))',
-					}
+					gridTemplateColumns: [ 'repeat(auto-fit, minmax(30%, 3fr))', 'repeat(auto-fit, minmax(20%, 3fr))'],
+					gridGap: [ 1, 2, 3 ],
+					p: [ 20, 30, 40 ]
 				}}>
 					{capabilities.map((c, i) => (
 						<Flex key={i} sx={{
 							color: 'primary',
 							p: [ 1, 2, 3 ],
-							// borderColor: 'light',
-							// borderWidth: [ 1, 2, 3 ],
-							// borderStyle: 'solid',
-							// borderRadius: 'exaggerated',
 							alignItems: 'center',
 							justifyContent: 'center',
 							textAlign: 'center',
@@ -65,17 +63,23 @@ export default function Index({ copy, capabilities }) {
 						}}><Text>{c}</Text></Flex>
 					))}
 				</Box>
-				<Box sx={{
+				<Heading sx={{
 					'a': {
 						color: 'light',
 						textDecoration: 'none',
+						'svg': {
+							fill: 'light'
+						},
 						':hover': {
-							textDecoration: 'underline'
+							color: 'primary',
+							'svg': {
+								fill: 'primary'
+							}
 						}
 					}
 				}}>
-					<Link href='/partners'><a>Who We Work With</a></Link>
-				</Box>
+					<Link href='/partners'><a>Who We Work With <Carat sx={{transform: 'rotate(-90deg)'}} /></a></Link>
+				</Heading>
 			</Box>
 		</Box>
 	)
