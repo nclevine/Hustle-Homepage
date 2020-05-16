@@ -4,14 +4,15 @@ import { Box, Flex, Heading, Text, Link, Image } from 'rebass'
 import Carat from '../components/carat'
 import XOut from '../components/xout'
 
-function FilterListItem({ name, onClick, selected }) {
+function FilterListItem({ name, onClick, selected, sx }) {
 	return (
 		<Text onClick={() => onClick()} sx={{
 			cursor: 'pointer',
 			color: selected ? 'primary' : 'light',
 			':hover': {
 				color: 'primary'
-			}
+			},
+			...sx
 		}}>
 			{name}
 		</Text>
@@ -81,12 +82,7 @@ function PartnerModule({ partners, locations, capabilities }) {
 
 	return (
 		<Box className='partner-module'>
-			<Box className='partner-filters' sx={{
-				// bg: 'light'
-				color: 'light',
-				fontWeight: 'bold',
-				fontSize: [ 1 ]
-			}}>
+			<Box className='partner-filters' variant='options'>
 				<Flex>
 					<Text sx={{
 						mr: [ 3 ]
@@ -144,9 +140,11 @@ function PartnerModule({ partners, locations, capabilities }) {
 					''
 				}
 			</Box>
-			<Flex className='partner-list' sx={{
-				flexWrap: 'wrap',
-				justifyContent: 'space-around',
+			<Box className='partner-list' sx={{
+				display: 'grid',
+				gridTemplateColumns: [ 'repeat(3, 27%)', 'repeat(4, 22%)' ],
+				rowGap: [ '1.5em', '1.5em', '1.75em' ],
+				justifyContent: 'space-evenly',
 				my: [ 3 ]
 			}}>
 				{partners
@@ -157,19 +155,14 @@ function PartnerModule({ partners, locations, capabilities }) {
 					})
 					.map((p, i) => <PartnerCard key={i} partner={p} expanded={expandedPartner === p.id} onClick={() => expandPartnerCard(p.id)} />)
 				}
-			</Flex>
+			</Box>
 		</Box>
 	)
 }
 
 function PartnerCard({ partner, expanded, onClick }) {
 	return (
-		<Box className='partner-card' onClick={() => onClick()} variant='card' sx={{
-			// width: '30%',
-			// mb: '3.33333vw'
-			// width: expanded ? '100%' : [ '100%', '50%', '33%' ],
-			// order: expanded ? -1 : 0
-		}}>
+		<Box className='partner-card' onClick={() => onClick()} variant='card'>
 			<Box >
 				<Image src={partner.logo} />
 			</Box>
@@ -197,23 +190,11 @@ function PartnerCard({ partner, expanded, onClick }) {
 }
 
 function FreeTheBidModule({ freeTheBidders, ftbRoles }) {
-	const [roleFilters, setRoleFilters] = useState([])
+	const [roleFilter, setRoleFilter] = useState('')
 	const [expandedBidder, setExpandedBidder] = useState('')
 
 	const filterList = filter => {
-		let filters = [...roleFilters]
-		let index = -1
-		if (!filter) {
-			filters = []
-		} else {
-			index = filters.indexOf(filter)
-			if (index > -1) {
-				filters.splice(index, 1)
-			} else {
-				filters.push(filter)
-			}
-		}
-		setRoleFilters(filters)
+		setRoleFilter(filter)
 		setExpandedBidder('')
 	}
 
@@ -226,39 +207,45 @@ function FreeTheBidModule({ freeTheBidders, ftbRoles }) {
 	}
 
 	return (
-		<div className='ftb-module'>
-			<div className='ftb-filters'>
-				<div className='ftb-filters-roles'>
-					<FilterListItem name='All' onClick={() => filterList()} selected={!roleFilters.length} />
-					{ftbRoles.map((r, i) => <FilterListItem key={i} name={r} onClick={() => filterList(r)} selected={roleFilters.includes(r)} />)}
-				</div>
-			</div>
-			<div className='ftb-list'>
+		<Box className='ftb-module'>
+			<Flex className='ftb-filters' variant='options'>
+				<Text sx={{mr: [ 3 ]}}>FILTER BY ROLE:</Text>
+				<FilterListItem name='ALL' onClick={() => filterList('')} selected={roleFilter === ''} sx={{mr: [ 3 ]}} />
+				{ftbRoles.map((r, i) => <FilterListItem key={i} name={r.toUpperCase()} onClick={() => filterList(r)} selected={roleFilter === r} sx={{mr: [ 3 ]}} />)}
+			</Flex>
+			<Box className='ftb-list' sx={{
+				display: 'grid',
+				gridTemplateColumns: [ 'repeat(5, 17%)' ],
+				rowGap: [ '1em' ],
+				justifyContent: 'space-evenly',
+				my: [ 3 ]
+			}}>
 				{freeTheBidders
 					.filter(b => {
-						const matchesRole = roleFilters.includes(b.role)
-						return matchesRole || !roleFilters.length
+						return roleFilter === b.role || roleFilter === ''
 					})
 					.map((b, i) => <FreeTheBidCard key={i} freeTheBidder={b} expanded={expandedBidder === b.id} onClick={() => expandBidderCard(b.id)} />)
 				}
-			</div>
-		</div>
+			</Box>
+		</Box>
 	)
 }
 
 function FreeTheBidCard({ freeTheBidder, expanded, onClick }) {
 	return (
-		<div className='ftb-card' onClick={() => onClick()}>
-			<h3 className='ftb-card-name'>{freeTheBidder.firstName + ' ' + freeTheBidder.lastName}</h3>
-			<p className='ftb-card-role'>{freeTheBidder.role}</p>
+		<Box className='ftb-card' onClick={() => onClick()} variant='card'>
+			<Heading>
+				{freeTheBidder.firstName + ' ' + freeTheBidder.lastName}
+			</Heading>
+			<Text className='ftb-card-role'>{freeTheBidder.role}</Text>
 			{expanded ?
-				<div className='ftb-card-info'>
-					<p className='ftb-card-partner'>Partnered with <Link href={freeTheBidder.partner.site} target='_blank'>{freeTheBidder.partner.name}</Link></p>
-					<p className='ftb-card-site'><Link href={freeTheBidder.site} target='_blank'>Learn More</Link></p>
-				</div> :
+				<Box className='ftb-card-info'>
+					<Text className='ftb-card-partner'>Partnered with <Link href={freeTheBidder.partner.site} target='_blank'>{freeTheBidder.partner.name}</Link></Text>
+					<Text className='ftb-card-site'><Link href={freeTheBidder.site} target='_blank'>Learn More</Link></Text>
+				</Box> :
 				''
 			}
-		</div>
+		</Box>
 	)
 }
 
