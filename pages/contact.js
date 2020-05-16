@@ -1,3 +1,4 @@
+import { Box, Flex, Heading, Text, Link, Image } from 'rebass'
 import { useState } from 'react'
 import { getAbbreviatedCapabilities } from '../lib/contentful-api'
 import { sendEmail } from '../lib/emailjs-api'
@@ -39,9 +40,9 @@ export default function Contact({ emailSubjects }) {
 
 
 	return (
-		<>
-			<h1>Contact Us</h1>
-			<div className='contact-email-form-container'>
+		<Box>
+			<Heading variant='lHeading'>Contact Us</Heading>
+			<Box className='contact-email-form-container'>
 				{!emailSent ? 
 					<form className='contact-email-form' onSubmit={e => onEmailSubmit(e)}>
 					    <input type='text' name='name' placeholder='Name' onChange={e => onNameChange(e)} />
@@ -55,13 +56,13 @@ export default function Contact({ emailSubjects }) {
 					</form> :
 					<h3 className='contact-email-sent'>Thanks for your message!</h3>
 				}
-			</div>
-			<h2>Receive Our Mailing List</h2>
+			</Box>
+			<Heading variant='mHeading'>Receive Our Mailing List</Heading>
 			<form className='mailing-list-form'>
 				<input type='email' name='email' placeholder='Email' />
 				<input type='submit' name='submit' value='Sign Up' />
 			</form>
-		</>
+		</Box>
 	)
 }
 

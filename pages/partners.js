@@ -143,8 +143,8 @@ function PartnerModule({ partners, locations, capabilities }) {
 			<Box className='partner-list' sx={{
 				display: 'grid',
 				gridTemplateColumns: [ 'repeat(3, 27%)', 'repeat(4, 22%)' ],
-				rowGap: [ '1.5em', '1.5em', '1.75em' ],
-				justifyContent: 'space-evenly',
+				gridGap: [ '1.5em', '1.5em', '1.75em' ],
+				justifyContent: 'center',
 				my: [ 3 ]
 			}}>
 				{partners
@@ -216,8 +216,8 @@ function FreeTheBidModule({ freeTheBidders, ftbRoles }) {
 			<Box className='ftb-list' sx={{
 				display: 'grid',
 				gridTemplateColumns: [ 'repeat(5, 17%)' ],
-				rowGap: [ '1em' ],
-				justifyContent: 'space-evenly',
+				gridGap: [ '1em' ],
+				justifyContent: 'center',
 				my: [ 3 ]
 			}}>
 				{freeTheBidders
@@ -277,9 +277,7 @@ export default function Partners({ partners, locations, capabilities, freeTheBid
 
 	return (
 		<Box>
-			<Heading variant='lHeading' sx={{
-				p: [ 20, 30, 40]
-			}}>Who We Work With</Heading>
+			<Heading variant='lHeading'>Who We Work With</Heading>
 			<Flex sx={{
 				p: [ 20, 30, 40],
 				pt: [ 0, 0, 0 ],

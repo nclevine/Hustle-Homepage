@@ -43,7 +43,7 @@ const theme = {
       fontFamily: 'heading',
       fontWeight: 'sHeading',
       fontSize: [ 3, 4, 5 ],
-      color: 'secondary',
+      color: 'primary',
       fontStyle: 'italic'
     },
     mHeading: {
@@ -57,12 +57,18 @@ const theme = {
       fontWeight: 'lHeading',
       fontStyle: 'italic',
       fontSize: [ 5, 6, 7 ],
-      color: 'primary'
+      color: 'primary',
+      p: [ 20, 30, 40 ]
     },
     largeCopy: {
       fontFamily: 'body',
       fontWeight: 'bold',
       fontSize: [ 3, 4, 5 ]
+    },
+    smallCaps: {
+      textTransform: 'uppercase',
+      fontSize: [ 1 ],
+      fontWeight: 'bold'
     },
     caps: {
       textTransform: 'uppercase',
@@ -86,6 +92,10 @@ const theme = {
     },
     link: {
       color: 'primary',
+      textDecoration: 'none',
+      ':hover': {
+        textDecoration: 'underline'
+      }
     },
     nav: {
       fontSize: 1,

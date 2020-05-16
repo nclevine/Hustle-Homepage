@@ -1,33 +1,48 @@
+import { Box, Flex, Heading, Text, Link, Image } from 'rebass'
 import { getTeamMembers } from '../lib/contentful-api'
 
 function TeamMember({ teamMember }) {
 	return (
-		<div className='team-member'>
-			<div className='team-member-headshot'><img src={teamMember.headshot} style={{width: '100%'}} /></div>
-			<h3 className='team-member-name'>{teamMember.firstName + ' ' + teamMember.lastName}</h3>
-			<h4 className='team-member-title'>{teamMember.title}</h4>
+		<Box className='team-member' variant='card'>
+			<Image src={teamMember.headshot} sx={{
+				width: '100%'
+			}} />
+			<Heading variant='sHeading'>{teamMember.firstName + ' ' + teamMember.lastName}</Heading>
+			<Heading>{teamMember.title}</Heading>
 			{teamMember.specialty ? 
-				<p className='team-member-specialty'>{teamMember.specialty}</p> : 
+				<Text sx={{
+					fontWeight: 'bold'
+				}}>{teamMember.specialty}</Text> : 
 				''
 			}
-			<p className='team-member-email'>{teamMember.email}</p>
-			<p className='team-member-phoneNumber'>{teamMember.phoneNumber}</p>
+			<Text variant='smallCaps'>{teamMember.email}</Text>
+			<Text variant='smallCaps'>{teamMember.phoneNumber}</Text>
 			{teamMember.linkedIn ? 
-				<p className='team-member-linkedIn'><a href={teamMember.linkedIn} target='_blank'>LinkedIn</a></p> :
+				<Link href={teamMember.linkedIn} target='_blank' sx={{
+					fontSize: [ 1 ],
+					textTransform: 'uppercase',
+					color: 'dark',
+					fontWeight: 'bold'
+				}}>LinkedIn</Link> :
 				''
 			}
-		</div>
+		</Box>
 	)
 }
 
 export default function Team({ teamMembers }) {
 	return (
-		<>
-			<h1>Our Team</h1>
-			<div className='team-members'>
+		<Box>
+			<Heading variant='lHeading'>Our Team</Heading>
+			<Box className='team-members' sx={{
+				display: 'grid',
+				gridTemplateColumns: [ 'repeat(3, 27%)' ],
+				gridGap: [ '2.5em' ],
+				justifyContent: 'center',
+			}}>
 				{teamMembers.map((t, i) => <TeamMember key={i} teamMember={t} />)}
-			</div>
-		</>
+			</Box>
+		</Box>
 	)
 }
 
