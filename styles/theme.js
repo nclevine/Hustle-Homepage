@@ -77,8 +77,10 @@ const theme = {
     },
     card: {
       p: 2,
-      bg: 'background',
-      boxShadow: 'card',
+      bg: 'light',
+      width: [ '30%', '22%' ],
+      mb: [ '3.3333vw', '3vw' ]
+      // boxShadow: 'card',
     },
     link: {
       color: 'primary',

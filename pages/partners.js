@@ -1,17 +1,20 @@
 import { useState } from 'react'
 import { getPartners, getLocations, getCapabilities, getFreeTheBidders, getFTBRoles } from '../lib/contentful-api'
-import { Box, Flex, Text, Heading } from 'rebass'
+import { Box, Flex, Heading, Text, Link, Image } from 'rebass'
+import Carat from '../components/carat'
+import XOut from '../components/xout'
 
-function FilterItem({ name, onClick, selected }) {
-	let className = 'filter-item'
-	if (selected) {
-		className += ' selected'
-	}
+function FilterListItem({ name, onClick, selected }) {
 	return (
-		<div className={className} onClick={() => onClick()}>
+		<Text onClick={() => onClick()} sx={{
+			cursor: 'pointer',
+			color: selected ? 'primary' : 'light',
+			':hover': {
+				color: 'primary'
+			}
+		}}>
 			{name}
-			{selected ? '✓' : ''}
-		</div>
+		</Text>
 	)
 }
 
@@ -20,15 +23,23 @@ function CurrentFilterItem({ filter, onClick }) {
 		<Text onClick={() => onClick()} sx={{
 			p: 1,
 			mr: 1,
-			bg: 'secondary',
-			color: 'light',
+			mb: 1,
+			borderStyle: 'solid',
+			borderWidth: 2,
+			borderColor: 'primary',
+			color: 'primary',
 			cursor: 'pointer',
 			':hover': {
 				'span': {
 					color: 'primary'
+				},
+				'svg': {
+					stroke: 'light'
 				}
 			}
-		}}>{filter} <span>X</span></Text>
+		}}>{filter.toUpperCase()} <XOut sx={{
+			ml: [ 1 ]
+		}} /> </Text>
 	)
 }
 
@@ -72,34 +83,60 @@ function PartnerModule({ partners, locations, capabilities }) {
 		<Box className='partner-module'>
 			<Box className='partner-filters' sx={{
 				// bg: 'light'
-				color: 'light'
+				color: 'light',
+				fontWeight: 'bold',
+				fontSize: [ 1 ]
 			}}>
 				<Flex>
-					<Text>Filter by:</Text>
-					<Box className='partner-filters-locations'>
-						<Text onClick={e => setLocationFiltersExpanded(!locationFiltersExpanded)}>Location</Text>
+					<Text sx={{
+						mr: [ 3 ]
+					}}>FILTER BY:</Text>
+					<Box className='partner-filters-locations' sx={{
+						mr: [ 3 ]
+					}}>
+						<Text onClick={e => {
+							setLocationFiltersExpanded(!locationFiltersExpanded)
+							setCapabilityFiltersExpanded(false)
+						}}>
+							LOCATION <Carat sx={{
+								transform: locationFiltersExpanded ? 'rotate(180deg)' : '',
+								fill: 'light'
+							}} />
+						</Text>
 						<Box sx={{
 							height: locationFiltersExpanded ? 'auto' : 0,
 							overflow: 'hidden'
 						}}>
-							<FilterItem name='All' onClick={() => filterList(null, 'location')} selected={!locationFilters.length} />
-							{locations.map((l, i) => <FilterItem key={i} name={l} onClick={() => filterList(l, 'location')} selected={locationFilters.includes(l)} />)}
+							<FilterListItem name='All' onClick={() => filterList(null, 'location')} selected={!locationFilters.length} />
+							{locations.map((l, i) => <FilterListItem key={i} name={l} onClick={() => filterList(l, 'location')} selected={locationFilters.includes(l)} />)}
 						</Box>
 					</Box>
 					<Box className='partner-filters-capabilities'>
-						<Text onClick={e => setCapabilityFiltersExpanded(!capabilityFiltersExpanded)}>Capability</Text>
+						<Text onClick={e => {
+							setCapabilityFiltersExpanded(!capabilityFiltersExpanded)
+							setLocationFiltersExpanded(false)
+						}}>
+							CAPABILITY <Carat sx={{
+								transform: capabilityFiltersExpanded ? 'rotate(180deg)' : '',
+								fill: 'light'
+							}} />
+						</Text>
 						<Box sx={{
 							height: capabilityFiltersExpanded ? 'auto' : 0,
 							overflow: 'hidden'
 						}}>
-							<FilterItem name='All' onClick={() => filterList(null, 'capability')} selected={!capabilityFilters.length} />
-							{capabilities.map((c, i) => <FilterItem key={i} name={c} onClick={() => filterList(c, 'capability')} selected={capabilityFilters.includes(c)} />)}
+							<FilterListItem name='All' onClick={() => filterList(null, 'capability')} selected={!capabilityFilters.length} />
+							{capabilities.map((c, i) => <FilterListItem key={i} name={c} onClick={() => filterList(c, 'capability')} selected={capabilityFilters.includes(c)} />)}
 						</Box>
 					</Box>
 				</Flex>
 				{locationFilters.length || capabilityFilters.length ? 
-					<Box className='current-filters'>
-						<Flex>
+					<Box className='current-filters' sx={{
+						mt: [ 2 ]
+					}}>
+						<Flex sx={{
+							flexWrap: 'wrap'
+						}}>
 							{locationFilters.map((f, i) => <CurrentFilterItem key={i} filter={f} onClick={() => filterList(f, 'location')} />)}
 							{capabilityFilters.map((f, i) => <CurrentFilterItem key={i} filter={f} onClick={() => filterList(f, 'capability')} />)}
 						</Flex>
@@ -108,7 +145,9 @@ function PartnerModule({ partners, locations, capabilities }) {
 				}
 			</Box>
 			<Flex className='partner-list' sx={{
-				flexWrap: 'wrap'
+				flexWrap: 'wrap',
+				justifyContent: 'space-around',
+				my: [ 3 ]
 			}}>
 				{partners
 					.filter(p => {
@@ -125,26 +164,28 @@ function PartnerModule({ partners, locations, capabilities }) {
 
 function PartnerCard({ partner, expanded, onClick }) {
 	return (
-		<Box className='partner-card' onClick={() => onClick()} sx={{
-			width: expanded ? '100%' : [ '100%', '50%', '33%' ],
-			order: expanded ? -1 : 0
+		<Box className='partner-card' onClick={() => onClick()} variant='card' sx={{
+			// width: '30%',
+			// mb: '3.33333vw'
+			// width: expanded ? '100%' : [ '100%', '50%', '33%' ],
+			// order: expanded ? -1 : 0
 		}}>
-			<Heading className='partner-card-name'>{partner.name}</Heading>
-			<Box className='partner-card-image'><img src={partner.logo} /></Box>
+			<Box >
+				<Image src={partner.logo} />
+			</Box>
 			{expanded ? 
 				(
 					<Box className='partner-card-info'>
-						<Text className='partner-card-link'>
-							<a href={partner.site} target='_blank'>Visit</a>
-						</Text>
-						<Box className='partner-card-locations'>
+						<Heading>{partner.name}</Heading>
+						<Link href={partner.site} target='_blank'>Visit</Link>
+						<Box>
 							{partner.locations.map((l, i) => (
-								<Text key={i} className='partner-card-location'>{l}</Text>
+								<Text key={i}>{l}</Text>
 							))}
 						</Box>
-						<Box className='partner-card-capabilities'>
+						<Box>
 							{partner.capabilities.map((c, i) => (
-								<Text key={i} className='partner-card-capability'>{c}</Text>
+								<Text key={i}>{c}</Text>
 							))}
 						</Box>
 					</Box>
@@ -188,8 +229,8 @@ function FreeTheBidModule({ freeTheBidders, ftbRoles }) {
 		<div className='ftb-module'>
 			<div className='ftb-filters'>
 				<div className='ftb-filters-roles'>
-					<FilterItem name='All' onClick={() => filterList()} selected={!roleFilters.length} />
-					{ftbRoles.map((r, i) => <FilterItem key={i} name={r} onClick={() => filterList(r)} selected={roleFilters.includes(r)} />)}
+					<FilterListItem name='All' onClick={() => filterList()} selected={!roleFilters.length} />
+					{ftbRoles.map((r, i) => <FilterListItem key={i} name={r} onClick={() => filterList(r)} selected={roleFilters.includes(r)} />)}
 				</div>
 			</div>
 			<div className='ftb-list'>
@@ -212,8 +253,8 @@ function FreeTheBidCard({ freeTheBidder, expanded, onClick }) {
 			<p className='ftb-card-role'>{freeTheBidder.role}</p>
 			{expanded ?
 				<div className='ftb-card-info'>
-					<p className='ftb-card-partner'>Partnered with <a href={freeTheBidder.partner.site} target='_blank'>{freeTheBidder.partner.name}</a></p>
-					<p className='ftb-card-site'><a href={freeTheBidder.site} target='_blank'>Learn More</a></p>
+					<p className='ftb-card-partner'>Partnered with <Link href={freeTheBidder.partner.site} target='_blank'>{freeTheBidder.partner.name}</Link></p>
+					<p className='ftb-card-site'><Link href={freeTheBidder.site} target='_blank'>Learn More</Link></p>
 				</div> :
 				''
 			}
