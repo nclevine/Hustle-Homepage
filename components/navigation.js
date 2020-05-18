@@ -77,7 +77,26 @@ export default function Navigation({ isHome }) {
 			
 			<Box className='nav-mobile-hamburger' onClick={e => toggleMobileNav(e)} sx={{
 				display: 'none',
+				position: 'relative',
 				mt: 25,
+				width: 20,
+				'div': {
+					':nth-of-type(1)': {
+						left: 0,
+						top: mobileNavExpanded ? '-1px' : '0px',
+						transform: mobileNavExpanded ? 'rotate(45deg)' : ''
+					},
+					':nth-of-type(2)': {
+						left: 0,
+						top: '6px',
+						opacity: mobileNavExpanded ? 0 : 1
+					},
+					':nth-of-type(3)': {
+						left: 0,
+						top: mobileNavExpanded ? '13px' : '12px',
+						transform: mobileNavExpanded ? 'rotate(-45deg)' : ''
+					}
+				},
 				':hover': {
 					'div': {
 						bg: 'primary'
@@ -88,11 +107,12 @@ export default function Navigation({ isHome }) {
 				}
 			}}>
 				{[1, 2, 3].map((l, i) => <Box key={i} sx={{
-					width: 20,
+					position: 'absolute',
+					width: '100%',
 					height: 2,
 					bg: 'light',
-					my: 1,
-					transition: '0.2s'
+					transition: '0.2s',
+					transformOrigin: 'left center'
 				}} />)}
 			</Box>
 			<Flex sx={{
