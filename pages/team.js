@@ -38,7 +38,7 @@ export default function Team({ teamMembers }) {
 			<Heading variant='lHeading'>Our Team</Heading>
 			<Box className='team-members' sx={{
 				display: 'grid',
-				gridTemplateColumns: [ 'repeat(3, 27%)' ],
+				gridTemplateColumns: [ 'repeat(1, 90%)', 'repeat(2, 46%)', 'repeat(3, 27%)' ],
 				gridGap: [ '2.5em' ],
 				justifyContent: 'center',
 				p: [ 20, 30, 40 ]
