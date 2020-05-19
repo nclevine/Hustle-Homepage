@@ -20,14 +20,15 @@ export default function Footer() {
 		}}>
 			<Flex sx={{
 				justifyContent: 'center',
-				pb: 10
+				pb: 10,
+				flexWrap: 'wrap'
 			}}>
 				{locations.map((l, i) => (
 					<Text key={i} sx={{
-						m: [ 1, 2, 3 ],
+						m: [ 2, 2, 3 ],
 						textTransform: 'uppercase',
 						color: 'primary',
-						fontSize: 2,
+						fontSize: [1, 2, 2],
 						fontWeight: 'bold',
 					}}>{l}</Text>
 				))}
@@ -36,8 +37,8 @@ export default function Footer() {
 				justifyContent: 'center'
 			}}>
 				<Box sx={{
-					mx: [ 1, 2, 3 ],
-					mb: [ 1, 2, 3 ],
+					mx: [ 2, 2, 3 ],
+					mb: [ 2, 2, 3 ],
 					width: 30,
 					height: 30,
 					'svg': {

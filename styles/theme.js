@@ -3,7 +3,12 @@ const theme = {
   colors: {
     dark: '#101010',
     light: '#efefef',
-    primary: '#d21997',
+    primary: '#d21997', 
+    primaryO1: '#d2199720',
+    primaryO2: '#d2199735',
+    primaryO3: '#d2199750',
+    primaryO4: '#d2199765',
+    primaryO5: '#d2199780',
     secondary: '#4F0939',
   },
   fonts: {
@@ -43,7 +48,7 @@ const theme = {
       fontFamily: 'heading',
       fontWeight: 'sHeading',
       fontSize: [ 3, 4, 5 ],
-      color: 'secondary',
+      color: 'primaryO3',
       fontStyle: 'italic'
     },
     sHeadingAlt: {
@@ -56,7 +61,8 @@ const theme = {
       fontFamily: 'heading',
       fontWeight: 'mHeading',
       fontSize: [ 4, 5, 6 ],
-      color: 'light'
+      color: 'dark',
+      textAlign: 'center'
     },
     lHeading: {
       fontFamily: 'heading',
@@ -64,7 +70,8 @@ const theme = {
       fontStyle: 'italic',
       fontSize: [ 5, 6, 7 ],
       color: 'primary',
-      p: [ 20, 30, 40 ]
+      p: [ 20, 30, 40 ],
+      textAlign: 'center'
     },
     largeCopy: {
       fontFamily: 'body',
@@ -90,13 +97,39 @@ const theme = {
       borderRadius: 'circle',
     },
     card: {
-      p: 2,
-      bg: 'light',
+      p: [ 2 ],
+      bg: 'white',
+    },
+    card1: {
+      variant: 'card',
+      bg: 'primaryO1'
+    },
+    card2: {
+      variant: 'card',
+      bg: 'primaryO2'
+    },
+    card3: {
+      variant: 'card',
+      bg: 'primaryO3'
+    },
+    card4: {
+      variant: 'card',
+      bg: 'primaryO4'
+    },
+    card5: {
+      variant: 'card',
+      bg: 'primaryO5'
     },
     options: {
-      color: 'light',
+      color: 'primary',
       fontWeight: 'bold',
-      fontSize: [ 1 ]
+      fontSize: [ 1 ],
+      bg: 'white',
+      p: [ 2 ],
+      transition: 'height 0.2s',
+      'svg': {
+        fill: 'primary'
+      }
     },
     link: {
       color: 'primary',

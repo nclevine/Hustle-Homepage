@@ -49,7 +49,7 @@ function PartnerModule({ partners, locations, capabilities }) {
 	const [locationFiltersExpanded, setLocationFiltersExpanded] = useState(false)
 	const [capabilityFilters, setCapabilityFilters] = useState([])
 	const [capabilityFiltersExpanded, setCapabilityFiltersExpanded] = useState(false)
-	const [expandedPartner, setExpandedPartner] = useState('')
+	const [expandedPartner, setExpandedPartner] = useState(null)
 
 	const filterList = (filter, type) => {
 		let filters = type === 'location' ? [...locationFilters] : [...capabilityFilters]
@@ -160,31 +160,46 @@ function PartnerModule({ partners, locations, capabilities }) {
 	)
 }
 
-function PartnerCard({ partner, expanded, onClick }) {
+function PartnerCard({ partner, onClick }) {
 	return (
 		<Box className='partner-card' onClick={() => onClick()} variant='card'>
-			<Box >
+			<Box className='partner-card-logo'>
 				<Image src={partner.logo} />
 			</Box>
-			{expanded ? 
-				(
-					<Box className='partner-card-info'>
-						<Heading>{partner.name}</Heading>
-						<Link href={partner.site} target='_blank'>Visit</Link>
-						<Box>
-							{partner.locations.map((l, i) => (
-								<Text key={i}>{l}</Text>
-							))}
-						</Box>
-						<Box>
-							{partner.capabilities.map((c, i) => (
-								<Text key={i}>{c}</Text>
-							))}
-						</Box>
-					</Box>
-				) :
-				''
-			}
+			<Box className='partner-card-name'>
+				<Heading>{partner.name}</Heading>
+			</Box>
+		</Box>
+	)
+}
+
+function PartnerDetailCard({ partner, exit }) {
+	return (
+		<Box className='parter-detail-card' sx={{
+			position: 'absolute'
+		}}>
+			<Box sx={{
+				position: 'absolute'
+			}}>
+				<XOut />
+			</Box>
+			<Box>
+				<Image src={partner.logo} />
+			</Box>
+			<Box className='partner-card-info'>
+				<Heading>{partner.name}</Heading>
+				<Link href={partner.site} target='_blank'>Visit</Link>
+				<Box>
+					{partner.locations.map((l, i) => (
+						<Text key={i}>{l}</Text>
+					))}
+				</Box>
+				<Box>
+					{partner.capabilities.map((c, i) => (
+						<Text key={i}>{c}</Text>
+					))}
+				</Box>
+			</Box>
 		</Box>
 	)
 }
