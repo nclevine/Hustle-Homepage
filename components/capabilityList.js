@@ -19,18 +19,19 @@ export default function CapabilityList({ capabilities }) {
 				display: 'grid',
 				gridTemplateColumns: [ 'repeat(2, auto)', 'repeat(2, auto)', 'repeat(3, auto)', 'repeat(4, auto)'],
 				columnGap: [ 2, 2, 2, 3 ],
-				rowGap: [ 1 ],
-				p: [ 20, 20, 30, 40 ]
+				rowGap: [ 2 ],
+				p: [ 20, 20, 30, 40 ],
+				justifyItems: 'center',
+				alignItems: 'center'
 			}}>
 				{capabilities.filter((c, i) => {
 					return showingMore ? true : c.priority
 				}).map((c, i) => (
 					<Text key={i} sx={{
 						color: 'primary',
-						alignItems: 'center',
-						justifyContent: 'center',
+						textAlign: 'center',
 						fontWeight: 'bold',
-						fontSize: [ 2 ],
+						fontSize: [ 1, 1, 2, 2 ],
 					}}>{c.name}</Text>
 				))}
 			</Box>

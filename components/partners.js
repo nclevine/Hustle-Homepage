@@ -278,7 +278,7 @@ function PartnerDetailCard({ partner, exit }) {
 				flexDirection: [ 'column', 'column', 'row', 'row' ],
 				alignItems: 'center',
 				justifyContent: 'space-between',
-				width: [ 'auto', 'auto', 'max-content', 'max-content']
+				width: [ '75%', '75%', 'max-content', 'max-content']
 			}}>
 				<Box sx={{
 					bg: 'primaryO3',
@@ -434,7 +434,9 @@ function FreeTheBidCard({ freeTheBidder, index, onClick }) {
 			}}
 		>
 			<Heading sx={{
-				textAlign: 'center'
+				textAlign: 'center',
+				fontSize: [ 3, 3, 4, 5 ],
+				hyphens: 'auto'
 			}}>
 				{freeTheBidder.firstName + ' ' + freeTheBidder.lastName}
 			</Heading>
