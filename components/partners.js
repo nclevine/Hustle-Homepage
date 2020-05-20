@@ -303,28 +303,34 @@ function PartnerDetailCard({ partner, exit }) {
 						py: 2
 					}}>
 						<Text variant='smallCaps' sx={{
-							fontSize: '10px'
+							fontSize: '8px'
 						}}>Locations:</Text>
 						{partner.locations.map((l, i) => (
 							<Text key={i} variant='smallCaps' sx={{
-								mt: 1
-							}}>{l}</Text>
+								mt: 1,
+								color: 'primary',
+								display: 'inline-block',
+								textTransform: 'none'
+							}}>{l}{(i < partner.locations.length - 1) ? ',\u00A0' : ''}</Text>
 						))}
 					</Box>
 					<Box sx={{
 						py: 2
 					}}>
 						<Text variant='smallCaps' sx={{
-							fontSize: '10px'
+							fontSize: '8px'
 						}}>Capabilities:</Text>
 						{partner.capabilities.map((c, i) => (
 							<Text key={i} variant='smallCaps' sx={{
-								mt: 1
-							}}>{c}</Text>
+								mt: 1,
+								color: 'primary',
+								display: 'inline-block',
+								textTransform: 'none'
+							}}>{c}{(i < partner.capabilities.length - 1) ? ',\u00A0' : ''}</Text>
 						))}
 					</Box>
 					<Link href={partner.site} target='_blank' sx={{
-						fontSize: 1,
+						fontSize: [ '10px', '12px', '12px', '12px' ],
 						textTransform: 'uppercase',
 						fontWeight: 'bold'
 					}}>Visit Site</Link>

@@ -84,8 +84,7 @@ const theme = {
     },
     smallCaps: {
       textTransform: 'uppercase',
-      fontSize: [ 0, 1, 1, 1 ],
-      // fontSize: [ 1 ],
+      fontSize: [ '10px', '12px', '12px', '12px' ],
       fontWeight: 'bold'
     },
     caps: {
