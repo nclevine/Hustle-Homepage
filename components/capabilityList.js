@@ -18,7 +18,6 @@ export default function CapabilityList({ capabilities }) {
 			<Box sx={{
 				display: 'grid',
 				gridTemplateColumns: [ 'repeat(2, auto)', 'repeat(3, auto)', 'repeat(4, auto)'],
-				// gridGap: [ 1, 2, 3 ],
 				columnGap: [ 2, 2, 3 ],
 				rowGap: [ 1 ],
 				p: [ 20, 30, 40 ]
@@ -28,14 +27,10 @@ export default function CapabilityList({ capabilities }) {
 				}).map((c, i) => (
 					<Text key={i} sx={{
 						color: 'primary',
-						// p: [ 1, 2, 3 ],
 						alignItems: 'center',
 						justifyContent: 'center',
-						// textAlign: 'center',
 						fontWeight: 'bold',
-						// minHeight: [ 45, 55, 86 ],
 						fontSize: [ 2 ],
-						// fontStyle: 'italic',
 					}}>{c.name}</Text>
 				))}
 			</Box>
@@ -93,21 +88,3 @@ export default function CapabilityList({ capabilities }) {
 		</Box>
 	)
 }
-
-			// <Heading sx={{
-			// 	'a': {
-			// 		color: 'light',
-			// 		textDecoration: 'none',
-			// 		'svg': {
-			// 			fill: 'light'
-			// 		},
-			// 		':hover': {
-			// 			color: 'primary',
-			// 			'svg': {
-			// 				fill: 'primary'
-			// 			}
-			// 		}
-			// 	}
-			// }}>
-			// 	<Link href='/partners'><a>Who We Work With <Carat sx={{transform: 'rotate(-90deg)'}} /></a></Link>
-			// </Heading>

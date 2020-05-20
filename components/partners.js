@@ -1,6 +1,6 @@
 import { useState } from 'react'
-// import { getPartners, getLocations, getCapabilities, getFreeTheBidders, getFTBRoles } from '../lib/contentful-api'
 import { Box, Flex, Heading, Text, Link, Image } from 'rebass'
+import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock'
 import Carat from './carat'
 import XOut from './xout'
 
@@ -28,18 +28,20 @@ function CurrentFilterItem({ filter, onClick }) {
 			borderStyle: 'solid',
 			borderWidth: 2,
 			borderColor: 'primary',
+			bg: 'white',
 			color: 'primary',
 			cursor: 'pointer',
-			'svg': {
-				stroke: 'primaryO3'
-			},
 			':hover': {
 				'svg': {
 					stroke: 'primary'
 				}
 			},
 		}}>{filter.toUpperCase()} <XOut sx={{
-			ml: [ 1 ]
+			ml: [ 1 ],
+			'svg': {
+				stroke: 'primaryO3',
+				strokeWidth: 3
+			}
 		}} /> </Text>
 	)
 }
@@ -72,18 +74,24 @@ function PartnerModule({ partners, locations, capabilities }) {
 		setExpandedPartner('')
 	}
 
-	const expandPartnerCard = id => {
-		if (expandedPartner === id) {
-			setExpandedPartner('')
-		} else {
-			setExpandedPartner(id)
-		}
+	const expandPartnerCard = partner => {
+		setExpandedPartner(partner)
+		disableBodyScroll()
 	}
 
 	return (
 		<Box className='partner-module'>
+			{expandedPartner ?
+				<PartnerDetailCard partner={expandedPartner} exit={() => {
+					clearAllBodyScrollLocks()
+					setExpandedPartner(null)
+				}} /> :
+				''
+			}
 			<Box className='partner-filters' variant='options'>
-				<Flex>
+				<Flex sx={{
+					justifyContent: 'center'
+				}}>
 					<Text sx={{
 						mr: [ 3 ]
 					}}>FILTER BY:</Text>
@@ -133,7 +141,9 @@ function PartnerModule({ partners, locations, capabilities }) {
 						mt: [ 2 ]
 					}}>
 						<Flex sx={{
-							flexWrap: 'wrap'
+							flexWrap: 'wrap',
+							width: [ '92%', '81%', '88%' ],
+							margin: '0 auto'
 						}}>
 							{locationFilters.map((f, i) => (
 								<CurrentFilterItem
@@ -165,9 +175,8 @@ function PartnerModule({ partners, locations, capabilities }) {
 			<Box className='partner-list' sx={{
 				display: 'grid',
 				gridTemplateColumns: [ 'repeat(2, 46%)', 'repeat(3, 27%)', 'repeat(4, 22%)' ],
-				// gridGap: [ '1.5em', '1.5em', '1.75em' ],
 				justifyContent: 'center',
-				my: [ 3 ]
+				my: [ 3, 4, 4 ]
 			}}>
 				{partners
 					.filter(p => {
@@ -180,7 +189,7 @@ function PartnerModule({ partners, locations, capabilities }) {
 							position: 'relative',
 							top: [ ((i % 2) * 40), ((i % 3) * 30), ((i % 4) * 20) ]
 						}}>
-							<PartnerCard partner={p} index={i} onClick={() => expandPartnerCard(p.id)} />
+							<PartnerCard partner={p} index={i} onClick={() => expandPartnerCard(p)} />
 						</Box>
 					))
 				}
@@ -243,31 +252,83 @@ function PartnerCard({ partner, index, onClick }) {
 
 function PartnerDetailCard({ partner, exit }) {
 	return (
-		<Box className='parter-detail-card' sx={{
-			position: 'absolute'
+		<Box className='partner-detail-card' sx={{
+			position: 'fixed',
+			top: '50%',
+			left: '50%',
+			transform: 'translate(-50%, -50%)',
+			width: '100vw',
+			height: '100vh',
+			zIndex: 999999
 		}}>
-			<Box sx={{
-				position: 'absolute'
+			<Box onClick={() => exit()} sx={{
+				width: '100%',
+				height: '100%',
+				bg: '#000000ef'
 			}}>
-				<XOut />
 			</Box>
-			<Box>
-				<Image src={partner.logo} />
-			</Box>
-			<Box className='partner-card-info'>
-				<Heading>{partner.name}</Heading>
-				<Link href={partner.site} target='_blank'>Visit</Link>
-				<Box>
-					{partner.locations.map((l, i) => (
-						<Text key={i}>{l}</Text>
-					))}
+			<Flex sx={{
+				position: 'absolute',
+				top: '50%',
+				left: '50%',
+				transform: 'translate(-50%, -50%)',
+				bg: 'light',
+				p: [ 3, 4, 4 ],
+				flexDirection: [ 'column', 'row', 'row' ],
+				alignItems: 'center',
+				justifyContent: 'space-between',
+				width: 'max-content'
+			}}>
+				<Box sx={{
+					bg: 'primaryO3',
+					width: [ '46vw', '27vw', '22vw' ],
+					height: [ '46vw', '27vw', '22vw' ],
+				}}>
+					<Image src={partner.logo} />
 				</Box>
-				<Box>
-					{partner.capabilities.map((c, i) => (
-						<Text key={i}>{c}</Text>
-					))}
+				<Box className='partner-card-info' sx={{
+					ml: [ 0, 4, 4 ],
+					mt: [ 4, 0, 0 ],
+					width: 'fit-content',
+				}}>
+					<Heading variant='sHeadingAlt' sx={{
+						width: 'max-content',
+						mb: [ 3 ],
+						fontSize: [ 5, 4, 5 ]
+					}}>
+						{partner.name}
+					</Heading>
+					<Box sx={{
+						py: 2
+					}}>
+						<Text variant='smallCaps' sx={{
+							fontSize: '10px'
+						}}>Locations:</Text>
+						{partner.locations.map((l, i) => (
+							<Text key={i} variant='smallCaps' sx={{
+								mt: 1
+							}}>{l}</Text>
+						))}
+					</Box>
+					<Box sx={{
+						py: 2
+					}}>
+						<Text variant='smallCaps' sx={{
+							fontSize: '10px'
+						}}>Capabilities:</Text>
+						{partner.capabilities.map((c, i) => (
+							<Text key={i} variant='smallCaps' sx={{
+								mt: 1
+							}}>{c}</Text>
+						))}
+					</Box>
+					<Link href={partner.site} target='_blank' sx={{
+						fontSize: 1,
+						textTransform: 'uppercase',
+						fontWeight: 'bold'
+					}}>Visit Site</Link>
 				</Box>
-			</Box>
+			</Flex>
 		</Box>
 	)
 }
@@ -281,17 +342,29 @@ function FreeTheBidModule({ freeTheBidders, ftbRoles }) {
 		setExpandedBidder('')
 	}
 
-	const expandBidderCard = id => {
-		if (expandedBidder === id) {
-			setExpandedBidder('')
-		} else {
-			setExpandedBidder(id)
-		}
+	const expandPartnerCard = partner => {
+		setExpandedPartner(partner)
+		disableBodyScroll()
+	}
+
+	const expandBidderCard = bidder => {
+		setExpandedBidder(bidder)
+		disableBodyScroll()
 	}
 
 	return (
 		<Box className='ftb-module'>
-			<Flex className='ftb-filters' variant='options'>
+			{expandedBidder ?
+				<FreeTheBidDetailCard freeTheBidder={expandedBidder} exit={() => {
+					clearAllBodyScrollLocks()
+					setExpandedBidder(null)
+				}} /> :
+				''
+			}
+			<Flex className='ftb-filters' variant='options' sx={{
+				width: 'max-content',
+				m: '0 auto'
+			}}>
 				<Text sx={{mr: [ 3 ]}}>FILTER BY ROLE:</Text>
 				<FilterListItem name='ALL' onClick={() => filterList('')} selected={roleFilter === ''} sx={{mr: [ 3 ]}} />
 				{ftbRoles.map((r, i) => <FilterListItem key={i} name={r.toUpperCase()} onClick={() => filterList(r)} selected={roleFilter === r} sx={{mr: [ 3 ]}} />)}
@@ -299,7 +372,6 @@ function FreeTheBidModule({ freeTheBidders, ftbRoles }) {
 			<Box className='ftb-list' sx={{
 				display: 'grid',
 				gridTemplateColumns: [ 'repeat(2, 35vw)', 'repeat(3, 22vw)', 'repeat(4, 17vw)' ],
-				// gridGap: [ '1.5em', '1.5em', '1.5em' ],
 				justifyContent: 'center',
 				my: [ 3 ]
 			}}>
@@ -313,7 +385,7 @@ function FreeTheBidModule({ freeTheBidders, ftbRoles }) {
 							height: [ '35vw', '22vw', '17vw' ],
 							top: [ ((i % 2) * 40), ((i % 3) * 30), ((i % 4) * 20) ]
 						}}>
-							<FreeTheBidCard freeTheBidder={b} index={i} onClick={() => expandBidderCard(b.id)} />
+							<FreeTheBidCard freeTheBidder={b} index={i} onClick={() => expandBidderCard(b)} />
 						</Box>
 					))
 				}
@@ -379,19 +451,50 @@ function FreeTheBidCard({ freeTheBidder, index, onClick }) {
 
 function FreeTheBidDetailCard({ freeTheBidder, exit }) {
 	return (
-		<Box className='ftb-detail-card'>
-			<Box sx={{
-				position: 'absolute'
+		<Box className='ftb-detail-card' sx={{
+			position: 'fixed',
+			top: '50%',
+			left: '50%',
+			transform: 'translate(-50%, -50%)',
+			width: '100vw',
+			height: '100vh',
+			zIndex: 999999
+		}}>
+			<Box onClick={() => exit()} sx={{
+				width: '100%',
+				height: '100%',
+				bg: '#000000ef'
 			}}>
-				<XOut />
 			</Box>
-			<Heading>
-				{freeTheBidder.firstName + ' ' + freeTheBidder.lastName}
-			</Heading>
-			<Text className='ftb-card-role'>{freeTheBidder.role}</Text>
-			<Box className='ftb-card-info'>
-				<Text className='ftb-card-partner'>Partnered with <Link href={freeTheBidder.partner.site} target='_blank'>{freeTheBidder.partner.name}</Link></Text>
-				<Text className='ftb-card-site'><Link href={freeTheBidder.site} target='_blank'>Learn More</Link></Text>
+			<Box sx={{
+				position: 'absolute',
+				top: '50%',
+				left: '50%',
+				transform: 'translate(-50%, -50%)',
+				bg: 'light',
+				p: [ 3, 4, 4 ],
+			}}>
+				<Heading variant='sHeadingAlt' sx={{
+					mb: 3
+				}}>
+					{freeTheBidder.firstName + ' ' + freeTheBidder.lastName}
+				</Heading>
+				<Heading sx={{
+					fontSize: [ 2, 3, 4 ],
+					mb: 3 
+				}}>{freeTheBidder.role}</Heading>
+				<Box className='ftb-card-info'>
+					<Text variant='smallCaps' sx={{
+						py: 2
+					}}>
+						Partnered with <Link href={freeTheBidder.partner.site} target='_blank'>{freeTheBidder.partner.name}</Link>
+					</Text>
+					<Text variant='smallCaps' sx={{
+						py: 2
+					}}>
+						<Link href={freeTheBidder.site} target='_blank'>Learn More</Link>
+					</Text>
+				</Box>
 			</Box>
 		</Box>
 	)
@@ -438,8 +541,8 @@ export default function Partners({ partners, locations, capabilities, freeTheBid
 		<Box>
 			<Heading variant='lHeading'>Who We Work With</Heading>
 			<Flex sx={{
-				p: [ 20, 30, 40],
-				pt: [ 0, 0, 0 ],
+				px: [ 20, 30, 40],
+				// pt: [ 0, 0, 0 ],
 				justifyContent: 'center',
 				alignItems: 'center'
 			}}>
@@ -457,17 +560,3 @@ export default function Partners({ partners, locations, capabilities, freeTheBid
 		</Box>
 	)
 }
-
-// Partners.subtitle = 'Our Partners'
-
-// export async function getStaticProps() {
-// 	const partners = await getPartners()
-// 	const locations = await getLocations()
-// 	const capabilities = await getCapabilities()
-// 	const freeTheBidders = await getFreeTheBidders()
-// 	const ftbRoles = await getFTBRoles()
-
-// 	return {
-// 		props: { partners, locations, capabilities, freeTheBidders, ftbRoles }
-// 	}
-// }

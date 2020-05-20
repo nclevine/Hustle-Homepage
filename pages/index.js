@@ -1,14 +1,13 @@
 import Link from 'next/link'
 import { Box, Flex, Text, Heading } from 'rebass'
-// import { getCopy, getCapabilities } from '../lib/contentful-api'
 import { getCopy, getCapabilities, getPartners, getLocations, getFreeTheBidders, getFTBRoles, getAbbreviatedCapabilities } from '../lib/contentful-api'
+import Intro from '../components/intro'
 import CapabilityList from '../components/capabilityList'
 import Partners from '../components/partners'
 import Contact from '../components/contact'
 import Divider from '../components/divider'
 import Carat from '../components/carat'
 
-// export default function Index({ copy, capabilities }) {
 export default function Index({ copy, capabilities, partners, locations, freeTheBidders, ftbRoles, emailSubjects }) {
 	return (
 		<Box className='home'>
@@ -17,18 +16,16 @@ export default function Index({ copy, capabilities, partners, locations, freeThe
 				width: '100vw',
 				minHeight: '100vh'
 			}}>
-				<Heading variant='lHeading' sx={{
+				<Intro sx={{
 					position: 'absolute',
 					top: 'calc(50% + 55px)',
 					left: '50%',
 					transform: 'translate(-50%, -50%)',
-					width: '80%'
-				}}>
-					{copy[1].text}
-				</Heading>
+					width: '70%'
+				}} />
 			</Box>
 			<Box id='about' sx={{
-				bg: 'light',
+				bg: 'white',
 				p: [ 20, 30, 40 ],
 			}}>
 				<Heading variant='mHeading' sx={{
@@ -37,16 +34,19 @@ export default function Index({ copy, capabilities, partners, locations, freeThe
 				<Text variant='largeCopy' sx={{
 					color: 'primary'
 				}}>{copy[0].text}</Text>
-				<Heading sx={{
+				<Text sx={{
 					textAlign: 'center',
+					textTransform: 'uppercase',
+					fontWeight: 'bold',
 					my: [ 20, 30, 40],
 					'a': {
-						bg: 'white',
+						bg: 'light',
 						borderWidth: 2,
-						borderColor: 'dark',
+						borderColor: 'transparent',
 						borderStyle: 'solid',
 						color: 'dark',
 						textDecoration: 'none',
+						fontSize: [ 1, 2, 2 ],
 						p: [ 2 ],
 						transition: '0.2s',
 						'svg': {
@@ -55,6 +55,7 @@ export default function Index({ copy, capabilities, partners, locations, freeThe
 						':hover': {
 							borderColor: 'primary',
 							color: 'primary',
+							bg: 'white',
 							'svg': {
 								fill: 'primary'
 							}
@@ -62,13 +63,18 @@ export default function Index({ copy, capabilities, partners, locations, freeThe
 					}
 				}}>
 					<Link href='/team'><a>Meet the Team <Carat sx={{transform: 'rotate(-90deg)'}} /></a></Link>
-				</Heading>
-				<Heading variant='mHeading' sx={{
-					pt: [ 40, 60, 80 ]
+				</Text>
+				<Box sx={{
+					bg: 'primaryO1',
+					mt: [ 40, 60, 80 ]
 				}}>
-					What We Do
-				</Heading>
-				<CapabilityList capabilities={capabilities} />
+					<Heading variant='mHeading' sx={{
+						pt: [ 20, 30, 40 ]
+					}}>
+						What We Do
+					</Heading>
+					<CapabilityList capabilities={capabilities} />
+				</Box>
 			</Box>
 			<Box id='partners' sx={{
 				pt: 110
@@ -106,12 +112,12 @@ export async function getStaticProps() {
 	}
 }
 
-// export async function getStaticProps() {
-// 	const copy = await getCopy()
-// 	const capabilities = await getCapabilities()
-
-// 	return {
-// 		props: { copy, capabilities }
-// 	}
-// }
-
+// <Heading variant='lHeading' sx={{
+// 	position: 'absolute',
+// 	top: 'calc(50% + 55px)',
+// 	left: '50%',
+// 	transform: 'translate(-50%, -50%)',
+// 	width: '80%'
+// }}>
+// 	{copy[1].text}
+// </Heading>

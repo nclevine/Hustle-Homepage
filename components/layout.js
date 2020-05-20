@@ -5,7 +5,7 @@ import { Box } from 'rebass'
 
 export default function Layout({ children, subtitle, isHome }) {
 	return (
-		<Box sx={{
+		<Box className='layout-container' sx={{
 			fontFamily: 'body',
 			bg: 'light',
 			minWidth: '100vw',

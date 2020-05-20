@@ -3,6 +3,7 @@ const theme = {
   colors: {
     dark: '#101010',
     light: '#efefef',
+    gray: '#8e8e8e',
     primary: '#d21997', 
     primaryO1: '#d2199720',
     primaryO2: '#d2199735',
@@ -77,8 +78,9 @@ const theme = {
       fontFamily: 'body',
       fontWeight: 'bold',
       fontSize: [ 3, 4, 5 ],
-      lineHeight: 'body',
-      p: [ 20, 30, 40 ]
+      lineHeight: '175%',
+      py: [ 20, 30, 40 ],
+      px: [ 40, 60, 80 ]
     },
     smallCaps: {
       textTransform: 'uppercase',
@@ -124,7 +126,7 @@ const theme = {
       color: 'primary',
       fontWeight: 'bold',
       fontSize: [ 1 ],
-      bg: 'white',
+      // bg: 'white',
       p: [ 2 ],
       transition: 'height 0.2s',
       'svg': {
@@ -153,28 +155,37 @@ const theme = {
       'input, select, textarea': {
         fontSize: [ 1 ],
         fontWeight: 'bold',
-        bg: 'light',
+        bg: 'white',
         borderRadius: 0,
         borderWidth: 0,
         fontFamily: 'body',
         outline: 'none',
+        transition: '0.2s',
+        resize: 'none',
         '&:focus': {
-          color: 'light',
-          bg: 'primary',
+          color: 'dark',
+          bg: 'primaryO3',
           '::placeholder': {
-            color: 'secondary'
+            color: 'gray'
           }
         },
         '::placeholder': {
           textTransform: 'uppercase',
+          color: 'primaryO3'
         }
       },
       'input[type=submit]': {
         textTransform: 'uppercase',
         cursor: 'pointer',
+        borderStyle: 'solid',
+        borderWidth: 2,
+        borderColor: 'transparent',
+        width: '40%',
+        minWidth: 'max-content',
+        margin: '0 auto',
         ':hover': {
-          color: 'light',
-          bg: 'primary'
+          color: 'primary',
+          borderColor: 'primary'
         }
       }
     }

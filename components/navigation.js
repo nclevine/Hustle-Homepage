@@ -71,44 +71,30 @@ export default function Navigation({ isHome }) {
 			borderWidth: 0,
 			borderBottomWidth: 2,
 			borderColor: 'primary',
-			// p: isHome ? [ 20, 30, 40 ] : 10,
 			p: 10,
-			// justifyContent: 'center',
 			justifyContent: 'space-between',
 			alignItems: 'center',
 			'@media screen and (max-width: 40em)': {
 				flexWrap: 'wrap',
 				justifyContent: 'space-between',
 				alignItems: 'flex-start',
-				// p: 20
 			}
 		}}>
-			<Box sx={{
-				'@media screen and (max-width: 40em)': {
-					// ml: isHome ? mobileNavExpanded ? 0 : 'calc(50% - 100px)' : 0,
-				}
-			}}>
+			<Box>
 				<NavLink route={router.pathname === '/' ? '#intro' : '/'} onClick={e => closeMobileNav(e)}>
 					<Logo sx={{
 						ml: [ 3 ],
-						// width: isHome ? [ 100, 200, 300 ] : 75,
 						width: 75,
 						transition: '0.3s ease',
 						'path': {
-							// fill: isHome ? 'light' : 'primary',
-							fill: isHome ? 'primary' : 'dark',
+							fill: 'primary',
 							transition: '0.2s'
 						},
 						':hover': {
 							'path': {
-								// fill: isHome ? 'primary' : 'light'
-								fill: isHome ? 'dark': 'primary'
+								fill: 'dark'
 							}
-						},
-						// '@media screen and (max-width: 40em)': {
-						// 	width: isHome ? mobileNavExpanded ? 75 : 200 : 75,
-						// 	mr: 0
-						// }
+						}
 					}} />
 				</NavLink>
 			</Box>
@@ -159,7 +145,6 @@ export default function Navigation({ isHome }) {
 				'div': {
 					m: [ 1, 2, 3 ],
 				},
-				// flexDirection: isHome ? 'column' : 'row',
 				'@media screen and (max-width: 40em)': {
 					width: '100%',
 					alignItems: 'center',
