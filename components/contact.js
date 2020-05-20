@@ -40,19 +40,19 @@ export default function Contact({ emailSubjects }) {
 
 
 	return (
-		<Box sx={{pb: [ 20, 30, 40 ]}}>
+		<Box sx={{pb: [ 20, 20, 30, 40 ]}}>
 			<Heading variant='lHeading'>Contact Us</Heading>
 			{!emailSent ? 
 				<Box variant='contactInput' as='form' onSubmit={e => onEmailSubmit(e)} sx={{
-					width: [ '80%', '75%', '50%' ],
+					width: [ '80%', '80%', '75%', '50%' ],
 					m: '0 auto'
 				}}>
 			    	<Input type='text' name='name' placeholder='Name' required onChange={e => onNameChange(e)} />
-				    <Box sx={{pt: [ 2, 3, 4 ]}}>
+				    <Box sx={{pt: [ 2, 2, 3, 4 ]}}>
 				    	<Input type='email' name='email' placeholder='Email' required onChange={e => onEmailChange(e)} />
 				    </Box>
 				    <Box sx={{
-				    	pt: [ 2, 3, 4 ],
+				    	pt: [ 2, 2, 3, 4 ],
 						'svg': {
 							fill: 'primaryO3'
 						}
@@ -66,30 +66,30 @@ export default function Contact({ emailSubjects }) {
 					    	))}
 					    </Select>
 				    </Box>
-					<Box sx={{pt: [ 2, 3, 4 ]}}>
-				    	<Textarea name='message' placeholder='Enter your message here' required onChange={e => onMessageChange(e)} sx={{height: [ 100, 150, 200 ]}}></Textarea>
+					<Box sx={{pt: [ 2, 2, 3, 4 ]}}>
+				    	<Textarea name='message' placeholder='Enter your message here' required onChange={e => onMessageChange(e)} sx={{height: [ 100, 100, 150, 200 ]}}></Textarea>
 				    </Box>
-					<Box sx={{pt: [ 2, 3, 4 ]}}>
+					<Box sx={{pt: [ 2, 2, 3, 4 ]}}>
 					    <Input type='submit' name='submit' value='Send' />
 					</Box>
 				</Box> :
 				<Heading variant='sHeadingAlt' sx={{
-					p: [ 20, 30, 40 ]
+					p: [ 20, 20, 30, 40 ]
 				}}>Thanks for your message!</Heading>
 			}
 			<Heading variant='sHeading' sx={{
-				pt: [ 40, 60, 80 ],
+				pt: [ 40, 40, 60, 80 ],
 				textAlign: 'center',
 				color: 'dark'
 			}}>Receive Our Mailing List</Heading>
 			<Box variant='contactInput' as='form' sx={{
-				width: [ '80%', '75%', '50%' ],
+				width: [ '80%', '80%', '75%', '50%' ],
 				m: '0 auto'
 			}}>
-				<Box sx={{pt: [ 2, 3, 4 ]}}>
+				<Box sx={{pt: [ 2, 2, 3, 4 ]}}>
 					<Input type='email' name='email' placeholder='Email' required />
 				</Box>
-				<Box sx={{pt: [ 2, 3, 4 ]}}>
+				<Box sx={{pt: [ 2, 2, 3, 4 ]}}>
 					<Input type='submit' name='submit' value='Sign Up' />
 				</Box>
 			</Box>

@@ -22,7 +22,7 @@ function TeamMember({ teamMember, index }) {
 				{teamMember.firstName + ' ' + teamMember.lastName}
 			</Heading>
 			<Heading variant='sHeadingAlt' sx={{
-				fontSize: [ 2, 3, 3 ],
+				fontSize: [ 2, 2, 3, 3 ],
 			}}>{teamMember.title}</Heading>
 			{teamMember.specialty ? 
 				<Text sx={{
@@ -54,9 +54,9 @@ export default function Team({ teamMembers }) {
 			<Heading variant='lHeading'>Our Team</Heading>
 			<Box className='team-members' sx={{
 				display: 'grid',
-				gridTemplateColumns: [ 'repeat(1, 55vw)', 'repeat(2, 32vw)', 'repeat(2, 28vw)' ],
+				gridTemplateColumns: [ 'repeat(1, 55vw)', 'repeat(1, 55vw)', 'repeat(2, 32vw)', 'repeat(2, 28vw)' ],
 				justifyContent: 'center',
-				p: [ 20, 30, 40 ],
+				p: [ 20, 20, 30, 40 ],
 				alignItems: 'stretch'
 			}}>
 				{teamMembers.map((t, i) => (

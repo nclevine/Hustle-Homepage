@@ -1,5 +1,5 @@
 const theme = {
-  breakpoints: ['40em', '52em', '64em'],
+  breakpoints: ['30em', '40em', '52em', '64em'],
   colors: {
     dark: '#101010',
     light: '#efefef',
@@ -48,20 +48,20 @@ const theme = {
     sHeading: {
       fontFamily: 'heading',
       fontWeight: 'sHeading',
-      fontSize: [ 3, 4, 5 ],
+      fontSize: [ 3, 3, 4, 5 ],
       color: 'primaryO3',
       fontStyle: 'italic'
     },
     sHeadingAlt: {
       fontFamily: 'heading',
       fontWeight: 'mHeading',
-      fontSize: [ 3, 4, 5 ],
+      fontSize: [ 3, 3, 4, 5 ],
       color: 'primary',
     },
     mHeading: {
       fontFamily: 'heading',
       fontWeight: 'mHeading',
-      fontSize: [ 4, 5, 6 ],
+      fontSize: [ 4, 4, 5, 6 ],
       color: 'dark',
       textAlign: 'center'
     },
@@ -69,7 +69,7 @@ const theme = {
       fontFamily: 'heading',
       fontWeight: 'lHeading',
       fontStyle: 'italic',
-      fontSize: [ 5, 6, 7 ],
+      fontSize: [ 5, 5, 6, 7 ],
       color: 'primary',
       p: [ 20, 30, 40 ],
       textAlign: 'center'
@@ -77,10 +77,10 @@ const theme = {
     largeCopy: {
       fontFamily: 'body',
       fontWeight: 'bold',
-      fontSize: [ 3, 4, 5 ],
+      fontSize: [ 5, 3, 4, 5 ],
       lineHeight: '175%',
-      py: [ 20, 30, 40 ],
-      px: [ 40, 60, 80 ]
+      py: [ 20, 20, 30, 40 ],
+      px: [ 40, 40, 60, 80 ]
     },
     smallCaps: {
       textTransform: 'uppercase',
@@ -125,7 +125,7 @@ const theme = {
     options: {
       color: 'primary',
       fontWeight: 'bold',
-      fontSize: [ 10, 14, 14 ],
+      fontSize: [ 10, 12, 14, 14 ],
       // bg: 'white',
       p: [ 2 ],
       transition: 'height 0.2s',

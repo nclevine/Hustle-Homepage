@@ -17,7 +17,7 @@ export default function Footer() {
 			borderTopWidth: 2,
 			bg: 'white',
 			p: 10,
-			mt: [ 40, 60, 80 ]
+			mt: [ 40, 40, 60, 80 ]
 		}}>
 			<Flex sx={{
 				justifyContent: 'center',
@@ -26,10 +26,10 @@ export default function Footer() {
 			}}>
 				{locations.map((l, i) => (
 					<Text key={i} sx={{
-						m: [ 2, 2, 3 ],
+						m: [ 2, 2, 2, 3 ],
 						textTransform: 'uppercase',
 						color: 'primary',
-						fontSize: [1, 2, 2],
+						fontSize: [ 1, 1, 2, 2 ],
 						fontWeight: 'bold',
 					}}>{l}</Text>
 				))}
@@ -38,8 +38,8 @@ export default function Footer() {
 				justifyContent: 'center'
 			}}>
 				<Box sx={{
-					mx: [ 2, 2, 3 ],
-					mb: [ 2, 2, 3 ],
+					mx: [ 2, 2, 2, 3 ],
+					mb: [ 2, 2, 2, 3 ],
 					width: 30,
 					height: 30,
 					'svg': {
@@ -63,8 +63,8 @@ export default function Footer() {
 					</a>
 				</Box>
 				<Box sx={{
-					mx: [ 1, 2, 3 ],
-					mb: [ 1, 2, 3 ],
+					mx: [ 1, 1, 2, 3 ],
+					mb: [ 1, 1, 2, 3 ],
 					width: 30,
 					height: 30,
 					'svg': {

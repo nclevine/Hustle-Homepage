@@ -4,30 +4,9 @@ import Link from 'next/link'
 import { Box, Flex } from 'rebass'
 import Logo from './logo'
 
-// function NavLink({ route, current, children, onClick }) {
-// 	return (
-// 		<Box onClick={() => onClick()} sx={{
-// 			m: [ 1, 2, 3 ],
-// 			'a': {
-// 				color: current ? 'dark' : 'primary',
-// 				fontSize: 2,
-// 				fontWeight: 'bold',
-// 				textDecoration: 'none',
-// 				transition: '0.2s',
-// 				':hover': {
-// 					color: 'dark'
-// 				}
-// 			}
-// 		}}>
-// 			<Link href={route}><a>{children}</a></Link>
-// 		</Box>
-// 	)
-// }
-
 function NavLink({ route, children, onClick }) {
 	return (
 		<Box onClick={() => onClick()} sx={{
-			// m: [ 1, 2, 3 ],
 			'a': {
 				color: 'primary',
 				fontSize: 2,
@@ -143,7 +122,7 @@ export default function Navigation({ isHome }) {
 			<Flex sx={{
 				justifyContent: 'center',
 				'div': {
-					m: [ 1, 2, 3 ],
+					m: [ 1, 1, 2, 3 ],
 				},
 				'@media screen and (max-width: 40em)': {
 					width: '100%',

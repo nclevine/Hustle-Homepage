@@ -11,16 +11,16 @@ export default function CapabilityList({ capabilities }) {
 
 	return (
 		<Box className='capabilities' sx={{
-			px: [ 20, 30, 40 ],
-			pb: [ 20, 30, 40 ],
+			px: [ 20, 20, 30, 40 ],
+			pb: [ 20, 20, 30, 40 ],
 			pt: [ 0 ]
 		}}>
 			<Box sx={{
 				display: 'grid',
-				gridTemplateColumns: [ 'repeat(2, auto)', 'repeat(3, auto)', 'repeat(4, auto)'],
-				columnGap: [ 2, 2, 3 ],
+				gridTemplateColumns: [ 'repeat(2, auto)', 'repeat(2, auto)', 'repeat(3, auto)', 'repeat(4, auto)'],
+				columnGap: [ 2, 2, 2, 3 ],
 				rowGap: [ 1 ],
-				p: [ 20, 30, 40 ]
+				p: [ 20, 20, 30, 40 ]
 			}}>
 				{capabilities.filter((c, i) => {
 					return showingMore ? true : c.priority

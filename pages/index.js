@@ -26,7 +26,7 @@ export default function Index({ copy, capabilities, partners, locations, freeThe
 			</Box>
 			<Box id='about' sx={{
 				bg: 'white',
-				p: [ 20, 30, 40 ],
+				p: [ 20, 20, 30, 40 ],
 			}}>
 				<Heading variant='mHeading' sx={{
 					color: 'dark'
@@ -39,7 +39,7 @@ export default function Index({ copy, capabilities, partners, locations, freeThe
 					textAlign: 'center',
 					textTransform: 'uppercase',
 					fontWeight: 'bold',
-					my: [ 20, 30, 40],
+					my: [ 20, 20, 30, 40],
 					'a': {
 						bg: 'light',
 						borderWidth: 2,
@@ -47,7 +47,7 @@ export default function Index({ copy, capabilities, partners, locations, freeThe
 						borderStyle: 'solid',
 						color: 'dark',
 						textDecoration: 'none',
-						fontSize: [ 1, 2, 2 ],
+						fontSize: [ 1, 1, 2, 2 ],
 						p: [ 2 ],
 						transition: '0.2s',
 						'svg': {
@@ -78,15 +78,15 @@ export default function Index({ copy, capabilities, partners, locations, freeThe
 				/>
 			</Box>
 			<Box sx={{
-				px: [ 20, 30, 40 ],
-				pt: [ 20, 30, 40 ]
+				px: [ 20, 20, 30, 40 ],
+				pt: [ 20, 20, 30, 40 ]
 			}}>
 				<Box sx={{
 					bg: 'primaryO1',
-					mt: [ 40, 60, 80 ]
+					mt: [ 40, 40, 60, 80 ]
 				}}>
 					<Heading variant='mHeading' sx={{
-						pt: [ 20, 30, 40 ]
+						pt: [ 20, 20, 30, 40 ]
 					}}>
 						What We Do
 					</Heading>

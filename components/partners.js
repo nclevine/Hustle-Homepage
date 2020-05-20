@@ -142,7 +142,7 @@ function PartnerModule({ partners, locations, capabilities }) {
 					}}>
 						<Flex sx={{
 							flexWrap: 'wrap',
-							width: [ '92%', '81%', '88%' ],
+							width: [ '92%', '92%', '81%', '88%' ],
 							margin: '0 auto'
 						}}>
 							{locationFilters.map((f, i) => (
@@ -174,9 +174,9 @@ function PartnerModule({ partners, locations, capabilities }) {
 			</Box>
 			<Box className='partner-list' sx={{
 				display: 'grid',
-				gridTemplateColumns: [ 'repeat(2, 38vw)', 'repeat(3, 27vw)', 'repeat(4, 22vw)' ],
+				gridTemplateColumns: [ 'repeat(2, 38vw)', 'repeat(2, 38vw)', 'repeat(3, 27vw)', 'repeat(4, 22vw)' ],
 				justifyContent: 'center',
-				my: [ 3, 4, 4 ]
+				my: [ 3, 3, 4, 4 ]
 			}}>
 				{partners
 					.filter(p => {
@@ -273,28 +273,28 @@ function PartnerDetailCard({ partner, exit }) {
 				left: '50%',
 				transform: 'translate(-50%, -50%)',
 				bg: 'light',
-				p: [ 3, 4, 4 ],
-				flexDirection: [ 'column', 'row', 'row' ],
+				p: [ 3, 3, 4, 4 ],
+				flexDirection: [ 'column', 'column', 'row', 'row' ],
 				alignItems: 'center',
 				justifyContent: 'space-between',
-				width: ['auto', 'max-content', 'max-content']
+				width: [ 'auto', 'auto', 'max-content', 'max-content']
 			}}>
 				<Box sx={{
 					bg: 'primaryO3',
-					width: [ '38vw', '27vw', '22vw' ],
-					height: [ '38vw', '27vw', '22vw' ],
+					width: [ '38vw', '38vw', '27vw', '22vw' ],
+					height: [ '38vw', '38vw', '27vw', '22vw' ],
 				}}>
 					<Image src={partner.logo} />
 				</Box>
 				<Box className='partner-card-info' sx={{
-					ml: [ 0, 4, 4 ],
-					mt: [ 4, 0, 0 ],
-					width: [ 'auto', 'fit-content', 'fit-content' ],
+					ml: [ 0, 0, 4, 4 ],
+					mt: [ 4, 4, 0, 0 ],
+					width: [ 'auto', 'auto', 'fit-content', 'fit-content' ],
 				}}>
 					<Heading variant='sHeadingAlt' sx={{
 						width: 'max-content',
 						mb: [ 3 ],
-						fontSize: [ 5, 4, 5 ]
+						fontSize: [ 5, 5, 4, 5 ]
 					}}>
 						{partner.name}
 					</Heading>
@@ -371,7 +371,7 @@ function FreeTheBidModule({ freeTheBidders, ftbRoles }) {
 			</Flex>
 			<Box className='ftb-list' sx={{
 				display: 'grid',
-				gridTemplateColumns: [ 'repeat(2, 35vw)', 'repeat(3, 22vw)', 'repeat(4, 17vw)' ],
+				gridTemplateColumns: [ 'repeat(2, 35vw)', 'repeat(2, 35vw)', 'repeat(3, 22vw)', 'repeat(4, 17vw)' ],
 				justifyContent: 'center',
 				my: [ 3 ]
 			}}>
@@ -382,7 +382,7 @@ function FreeTheBidModule({ freeTheBidders, ftbRoles }) {
 					.map((b, i) => (
 						<Box key={i} sx={{
 							position: 'relative',
-							height: [ '35vw', '22vw', '17vw' ],
+							height: [ '35vw', '35vw', '22vw', '17vw' ],
 							// top: [ ((i % 2) * 40), ((i % 3) * 30), ((i % 4) * 20) ]
 						}}>
 							<FreeTheBidCard freeTheBidder={b} index={i} onClick={() => expandBidderCard(b)} />
@@ -472,7 +472,7 @@ function FreeTheBidDetailCard({ freeTheBidder, exit }) {
 				left: '50%',
 				transform: 'translate(-50%, -50%)',
 				bg: 'light',
-				p: [ 3, 4, 4 ],
+				p: [ 3, 3, 4, 4 ],
 			}}>
 				<Heading variant='sHeadingAlt' sx={{
 					mb: 3
@@ -480,7 +480,7 @@ function FreeTheBidDetailCard({ freeTheBidder, exit }) {
 					{freeTheBidder.firstName + ' ' + freeTheBidder.lastName}
 				</Heading>
 				<Heading sx={{
-					fontSize: [ 2, 3, 4 ],
+					fontSize: [ 2, 2, 3, 4 ],
 					mb: 3 
 				}}>{freeTheBidder.role}</Heading>
 				<Box className='ftb-card-info'>
@@ -503,7 +503,7 @@ function FreeTheBidDetailCard({ freeTheBidder, exit }) {
 function ModuleToggle({ text, selected, onClick }) {
 	return (
 		<Box onClick={() => onClick()} sx={{
-			mx: [ 2, 3, 4 ]
+			mx: [ 2, 2, 3, 4 ]
 		}}>
 			<Heading variant={selected ? 'mHeading' : 'sHeading'} sx={{
 				position: 'relative',
@@ -517,7 +517,7 @@ function ModuleToggle({ text, selected, onClick }) {
 				<Carat sx={{
 					position: 'absolute',
 					left: '50%',
-					bottom: [ -20, -20, -30 ],
+					bottom: [ -20, -20, -20, -30 ],
 					transform: 'translateX(-50%)',
 					opacity: selected ? 1 : 0,
 					transition: '0.2s'
@@ -541,7 +541,7 @@ export default function Partners({ partners, locations, capabilities, freeTheBid
 		<Box>
 			<Heading variant='lHeading'>Who We Work With</Heading>
 			<Flex sx={{
-				px: [ 20, 30, 40],
+				px: [ 20, 20, 30, 40],
 				justifyContent: 'center',
 				alignItems: 'center'
 			}}>
@@ -549,7 +549,7 @@ export default function Partners({ partners, locations, capabilities, freeTheBid
 				<ModuleToggle text='Free the Bid' selected={module === 'ftb'} onClick={() => toggleModule('ftb')} />
 			</Flex>
 			<Box sx={{
-				p: [ 20, 30, 40]
+				p: [ 20, 20, 30, 40]
 			}}>
 				{module === 'partners' ? 
 					<PartnerModule partners={partners} locations={locations} capabilities={capabilities} /> :
