@@ -233,8 +233,9 @@ function PartnerCard({ partner, index, onClick }) {
 				p: 2,
 				cursor: 'pointer',
 			}}>
-				<Heading sx={{
-					textAlign: 'center'
+				<Heading variant='mHeading' sx={{
+					fontSize: [ 3, 3, 4, 5 ],
+					hyphens: 'auto'
 				}}>{partner.name}</Heading>
 				<Carat sx={{
 					position: 'absolute',
@@ -294,7 +295,7 @@ function PartnerDetailCard({ partner, exit }) {
 					<Heading variant='sHeadingAlt' sx={{
 						width: 'max-content',
 						mb: [ 3 ],
-						fontSize: [ 5, 5, 4, 5 ]
+						fontSize: [ 3, 4, 4, 5 ]
 					}}>
 						{partner.name}
 					</Heading>

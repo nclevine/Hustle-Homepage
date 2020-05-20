@@ -77,7 +77,7 @@ const theme = {
     largeCopy: {
       fontFamily: 'body',
       fontWeight: 'bold',
-      fontSize: [ 5, 3, 4, 5 ],
+      fontSize: [ 2, 3, 4, 5 ],
       lineHeight: '175%',
       py: [ 20, 20, 30, 40 ],
       px: [ 40, 40, 60, 80 ]
