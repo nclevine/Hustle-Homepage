@@ -12,16 +12,16 @@ export default function Index({ copy, capabilities, partners, locations, freeThe
 	return (
 		<Box className='home'>
 			<Box id='intro' sx={{
-				position: 'relative',
-				width: '100vw',
-				minHeight: '100vh'
+				pt: 170,
+				pb: 80,
+				maxHeight: 680
 			}}>
 				<Intro sx={{
-					position: 'absolute',
-					top: 'calc(50% + 55px)',
-					left: '50%',
-					transform: 'translate(-50%, -50%)',
-					width: '70%'
+					width: '70%',
+					margin: '0 auto',
+					'svg': {
+						maxHeight: 425,
+					}
 				}} />
 			</Box>
 			<Box id='about' sx={{
@@ -32,7 +32,8 @@ export default function Index({ copy, capabilities, partners, locations, freeThe
 					color: 'dark'
 				}}>Who We Are</Heading>
 				<Text variant='largeCopy' sx={{
-					color: 'primary'
+					color: 'primary',
+					textAlign: 'center'
 				}}>{copy[0].text}</Text>
 				<Text sx={{
 					textAlign: 'center',
@@ -64,17 +65,6 @@ export default function Index({ copy, capabilities, partners, locations, freeThe
 				}}>
 					<Link href='/team'><a>Meet the Team <Carat sx={{transform: 'rotate(-90deg)'}} /></a></Link>
 				</Text>
-				<Box sx={{
-					bg: 'primaryO1',
-					mt: [ 40, 60, 80 ]
-				}}>
-					<Heading variant='mHeading' sx={{
-						pt: [ 20, 30, 40 ]
-					}}>
-						What We Do
-					</Heading>
-					<CapabilityList capabilities={capabilities} />
-				</Box>
 			</Box>
 			<Box id='partners' sx={{
 				pt: 110
@@ -86,6 +76,22 @@ export default function Index({ copy, capabilities, partners, locations, freeThe
 					freeTheBidders={freeTheBidders}
 					ftbRoles={ftbRoles}
 				/>
+			</Box>
+			<Box sx={{
+				px: [ 20, 30, 40 ],
+				pt: [ 20, 30, 40 ]
+			}}>
+				<Box sx={{
+					bg: 'primaryO1',
+					mt: [ 40, 60, 80 ]
+				}}>
+					<Heading variant='mHeading' sx={{
+						pt: [ 20, 30, 40 ]
+					}}>
+						What We Do
+					</Heading>
+					<CapabilityList capabilities={capabilities} />
+				</Box>
 			</Box>
 			<Box id='contact' sx={{
 				pt: 110
@@ -111,13 +117,3 @@ export async function getStaticProps() {
 		props: { copy, capabilities, partners, locations, freeTheBidders, ftbRoles, emailSubjects }
 	}
 }
-
-// <Heading variant='lHeading' sx={{
-// 	position: 'absolute',
-// 	top: 'calc(50% + 55px)',
-// 	left: '50%',
-// 	transform: 'translate(-50%, -50%)',
-// 	width: '80%'
-// }}>
-// 	{copy[1].text}
-// </Heading>

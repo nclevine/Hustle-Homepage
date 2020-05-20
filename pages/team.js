@@ -8,7 +8,7 @@ function TeamMember({ teamMember, index }) {
 			variant={'card' + (index % 3 * 2 + 1)}
 			sx={{
 				p: [ 4 ],
-				minHeight: [ 0, 520, 600 ]
+				height: '100%'
 			}}
 		>
 			<Image src={teamMember.headshot} sx={{
@@ -54,14 +54,16 @@ export default function Team({ teamMembers }) {
 			<Heading variant='lHeading'>Our Team</Heading>
 			<Box className='team-members' sx={{
 				display: 'grid',
-				gridTemplateColumns: [ 'repeat(1, 80%)', 'repeat(2, 40%)', 'repeat(2, 40%)' ],
+				gridTemplateColumns: [ 'repeat(1, 37vw)', 'repeat(2, 32vw)', 'repeat(2, 28vw)' ],
 				justifyContent: 'center',
-				p: [ 20, 30, 40 ]
+				p: [ 20, 30, 40 ],
+				alignItems: 'stretch'
 			}}>
 				{teamMembers.map((t, i) => (
 					<Box key={i} sx={{
 						position: 'relative',
-						top: [ 0, ((i % 2) * 30), ((i % 2) * 30) ]
+						height: '100%'
+						// top: [ 0, ((i % 2) * 30), ((i % 2) * 30) ]
 					}}>
 						<TeamMember index={i} teamMember={t} />
 					</Box>

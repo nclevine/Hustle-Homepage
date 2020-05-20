@@ -187,7 +187,7 @@ function PartnerModule({ partners, locations, capabilities }) {
 					.map((p, i) => (
 						<Box key={i} sx={{
 							position: 'relative',
-							top: [ ((i % 2) * 40), ((i % 3) * 30), ((i % 4) * 20) ]
+							// top: [ ((i % 2) * 40), ((i % 3) * 30), ((i % 4) * 20) ]
 						}}>
 							<PartnerCard partner={p} index={i} onClick={() => expandPartnerCard(p)} />
 						</Box>
@@ -383,7 +383,7 @@ function FreeTheBidModule({ freeTheBidders, ftbRoles }) {
 						<Box key={i} sx={{
 							position: 'relative',
 							height: [ '35vw', '22vw', '17vw' ],
-							top: [ ((i % 2) * 40), ((i % 3) * 30), ((i % 4) * 20) ]
+							// top: [ ((i % 2) * 40), ((i % 3) * 30), ((i % 4) * 20) ]
 						}}>
 							<FreeTheBidCard freeTheBidder={b} index={i} onClick={() => expandBidderCard(b)} />
 						</Box>
@@ -542,7 +542,6 @@ export default function Partners({ partners, locations, capabilities, freeTheBid
 			<Heading variant='lHeading'>Who We Work With</Heading>
 			<Flex sx={{
 				px: [ 20, 30, 40],
-				// pt: [ 0, 0, 0 ],
 				justifyContent: 'center',
 				alignItems: 'center'
 			}}>
