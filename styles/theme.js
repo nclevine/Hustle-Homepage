@@ -125,7 +125,7 @@ const theme = {
     options: {
       color: 'primary',
       fontWeight: 'bold',
-      fontSize: [ 1 ],
+      fontSize: [ 12, 14, 14 ],
       // bg: 'white',
       p: [ 2 ],
       transition: 'height 0.2s',

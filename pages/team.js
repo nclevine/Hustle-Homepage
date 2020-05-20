@@ -54,7 +54,7 @@ export default function Team({ teamMembers }) {
 			<Heading variant='lHeading'>Our Team</Heading>
 			<Box className='team-members' sx={{
 				display: 'grid',
-				gridTemplateColumns: [ 'repeat(1, 37vw)', 'repeat(2, 32vw)', 'repeat(2, 28vw)' ],
+				gridTemplateColumns: [ 'repeat(1, 55vw)', 'repeat(2, 32vw)', 'repeat(2, 28vw)' ],
 				justifyContent: 'center',
 				p: [ 20, 30, 40 ],
 				alignItems: 'stretch'

@@ -174,7 +174,7 @@ function PartnerModule({ partners, locations, capabilities }) {
 			</Box>
 			<Box className='partner-list' sx={{
 				display: 'grid',
-				gridTemplateColumns: [ 'repeat(2, 46%)', 'repeat(3, 27%)', 'repeat(4, 22%)' ],
+				gridTemplateColumns: [ 'repeat(2, 38vw)', 'repeat(3, 27vw)', 'repeat(4, 22vw)' ],
 				justifyContent: 'center',
 				my: [ 3, 4, 4 ]
 			}}>
@@ -277,19 +277,19 @@ function PartnerDetailCard({ partner, exit }) {
 				flexDirection: [ 'column', 'row', 'row' ],
 				alignItems: 'center',
 				justifyContent: 'space-between',
-				width: 'max-content'
+				width: ['auto', 'max-content', 'max-content']
 			}}>
 				<Box sx={{
 					bg: 'primaryO3',
-					width: [ '46vw', '27vw', '22vw' ],
-					height: [ '46vw', '27vw', '22vw' ],
+					width: [ '38vw', '27vw', '22vw' ],
+					height: [ '38vw', '27vw', '22vw' ],
 				}}>
 					<Image src={partner.logo} />
 				</Box>
 				<Box className='partner-card-info' sx={{
 					ml: [ 0, 4, 4 ],
 					mt: [ 4, 0, 0 ],
-					width: 'fit-content',
+					width: [ 'auto', 'fit-content', 'fit-content' ],
 				}}>
 					<Heading variant='sHeadingAlt' sx={{
 						width: 'max-content',
