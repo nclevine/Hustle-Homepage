@@ -186,6 +186,14 @@ const theme = {
         ':hover': {
           color: 'primary',
           borderColor: 'primary'
+        },
+        ':disabled': {
+          cursor: 'auto',
+          color: 'light',
+          ':hover': {
+            color: 'light',
+            borderColor: 'transparent'
+          }
         }
       }
     }
