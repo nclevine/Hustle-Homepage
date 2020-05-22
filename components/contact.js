@@ -51,7 +51,6 @@ export default function Contact({ emailSubjects }) {
 	}
 
 	const onSignupSubmit = e => {
-		// implement copper or whatever
 		const templateParams = {
 			visitorName: signupName,
 			visitorEmail: signupEmail
@@ -176,7 +175,7 @@ export default function Contact({ emailSubjects }) {
 							type='submit'
 							name='submit'
 							value='Sign Up'
-							disabled={!signupEmail}
+							disabled={!(signupEmail && signupName)}
 						/>
 					</Box>
 				</Box> :

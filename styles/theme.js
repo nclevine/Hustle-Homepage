@@ -157,11 +157,16 @@ const theme = {
         fontWeight: 'bold',
         bg: 'white',
         borderRadius: 0,
-        borderWidth: 0,
+        borderWidth: 2,
+        borderStyle: 'solid',
+        borderColor: 'transparent',
         fontFamily: 'body',
         outline: 'none',
         transition: '0.2s',
         resize: 'none',
+        ':hover': {
+          borderColor: 'primary'
+        },
         '&:focus': {
           color: 'dark',
           bg: 'primaryO3',
@@ -172,20 +177,19 @@ const theme = {
         '::placeholder': {
           textTransform: 'uppercase',
           color: 'primaryO3'
-        }
+        },
       },
       'input[type=submit]': {
         textTransform: 'uppercase',
         cursor: 'pointer',
-        borderStyle: 'solid',
-        borderWidth: 2,
-        borderColor: 'transparent',
+        // borderStyle: 'solid',
+        // borderWidth: 2,
+        // borderColor: 'transparent',
         width: '40%',
         minWidth: 'max-content',
         margin: '0 auto',
         ':hover': {
           color: 'primary',
-          borderColor: 'primary'
         },
         ':disabled': {
           cursor: 'auto',
