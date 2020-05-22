@@ -2,7 +2,7 @@
 import { Box, Flex, Heading, Text } from 'rebass'
 import { Label, Input, Select, Textarea } from '@rebass/forms'
 import { useState } from 'react'
-import { sendEmail } from '../lib/emailjs-api'
+import { sendEmail, joinMailingList } from '../lib/emailjs-api'
 
 export default function Contact({ emailSubjects }) {
 	const [emailSent, setEmailSent] = useState(false)
@@ -12,6 +12,7 @@ export default function Contact({ emailSubjects }) {
 	const [message, setMessage] = useState('')
 	const [signedUp, setSignedUp] = useState(false)
 	const [signupEmail, setSignupEmail] = useState('')
+	const [signupName, setSignupName] = useState('')
 
 	const onNameChange = e => {
 		setVisitorName(e.target.value)
@@ -45,9 +46,18 @@ export default function Contact({ emailSubjects }) {
 		setSignupEmail(e.target.value)
 	}
 
+	const onSignupNameChanged = e => {
+		setSignupName(e.target.value)
+	}
+
 	const onSignupSubmit = e => {
 		// implement copper or whatever
+		const templateParams = {
+			visitorName: signupName,
+			visitorEmail: signupEmail
+		}
 		setSignedUp(true)
+		joinMailingList(templateParams)
 		e.preventDefault()
 	}
 
@@ -143,6 +153,15 @@ export default function Contact({ emailSubjects }) {
 						m: '0 auto'
 					}}
 				>
+					<Box sx={{pt: [ 2, 2, 3, 4 ]}}>
+						<Input 
+							required
+							type='text'
+							name='name'
+							placeholder='Name'
+							onChange={e => onSignupNameChanged(e)}
+						/>
+					</Box>
 					<Box sx={{pt: [ 2, 2, 3, 4 ]}}>
 						<Input 
 							required

@@ -278,22 +278,23 @@ function PartnerDetailCard({ partner, exit }) {
 				flexDirection: [ 'column', 'column', 'row', 'row' ],
 				alignItems: 'center',
 				justifyContent: 'space-between',
-				width: [ '75%', '75%', 'max-content', 'max-content']
+				width: [ 'auto', 'auto', 'max-content', 'max-content'],
+				maxWidth: [ '75%', '75%', '60%', '60%' ]
 			}}>
 				<Box sx={{
 					bg: 'primaryO3',
-					width: [ '38vw', '38vw', '27vw', '22vw' ],
-					height: [ '38vw', '38vw', '27vw', '22vw' ],
+					width: [ '38vw', '38vw', '22vw', '22vw' ],
+					height: [ '38vw', '38vw', '22vw', '22vw' ],
 				}}>
 					<Image src={partner.logo} />
 				</Box>
 				<Box className='partner-card-info' sx={{
 					ml: [ 0, 0, 4, 4 ],
 					mt: [ 4, 4, 0, 0 ],
-					width: [ 'auto', 'auto', 'fit-content', 'fit-content' ],
+					width: [ 'auto', 'auto', '22vw', '22vw' ],
 				}}>
 					<Heading variant='sHeadingAlt' sx={{
-						width: 'max-content',
+						// width: 'max-content',
 						mb: [ 3 ],
 						fontSize: [ 3, 4, 4, 5 ]
 					}}>
