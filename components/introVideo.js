@@ -4,6 +4,7 @@ export default function IntroVideo({ videoSrc, copy }) {
 	return (
 		<Box sx={{
 			position: 'relative',
+			height: '100%',
 			'video': {
 				display: 'block',
 				width: '100%'
@@ -14,6 +15,7 @@ export default function IntroVideo({ videoSrc, copy }) {
 				position: 'absolute',
 				width: '100%',
 				height: '100%',
+				maxHeight: 610,
 				top: 0,
 				left: 0,
 				bg: 'primaryO5',

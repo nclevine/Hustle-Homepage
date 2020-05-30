@@ -21,6 +21,7 @@ export default function Index({ copy, capabilities, partners, locations, freeThe
 				pt: 90,
 				// pb: 80,
 				maxHeight: 680,
+				overflow: 'hidden'
 			}}>
 				<IntroVideo videoSrc={introVideo.url} copy={copy[1].text} />
 			</Box>
