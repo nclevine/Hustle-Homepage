@@ -10,7 +10,7 @@ export default function IntroVideo({ videoSrc, copy }) {
 				width: '100%'
 			}
 		}}>
-			<video src={videoSrc} autoPlay loop muted />
+			<video src={videoSrc} autoPlay playsInline loop muted />
 			<Flex sx={{
 				position: 'absolute',
 				width: '100%',

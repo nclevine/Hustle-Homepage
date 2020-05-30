@@ -9,7 +9,7 @@ function TeamMember({ teamMember, index }) {
 			variant={'card' + (index % 3 + 1)}
 			sx={{
 				p: [ 4 ],
-				height: '100%'
+				height: '100%',
 			}}
 		>
 			<Image src={teamMember.headshot} sx={{
@@ -52,17 +52,32 @@ export default function Team({ teamMembers }) {
 		<Box sx={{
 			pt: 110,
 			pb: [ 40, 40, 60, 80 ],
-			backgroundImage: 'url(\'/background-gradient.jpg\')',
-			backgroundAttachment: 'fixed',
-			backgroundSize: 'cover'
+			position: 'relative',
+			':before': {
+				content: '""',
+				position: 'fixed',
+				width: '100vw',
+				height: '100vh',
+				top: 0,
+				left: 0,
+				zIndex: 0,
+				backgroundImage: 'url(\'/background-gradient.jpg\')',
+				backgroundSize: 'auto 100vh',
+				backgroundPosition: 'top center',
+			},
 		}}>
-			<Heading variant='lHeading'>Our Team</Heading>
+			<Heading variant='lHeading' sx={{
+				position: 'relative',
+				zIndex: 1
+			}}>Our Team</Heading>
 			<Box className='team-members' sx={{
 				display: 'grid',
 				gridTemplateColumns: [ 'repeat(1, 55vw)', 'repeat(1, 55vw)', 'repeat(2, 32vw)', 'repeat(2, 28vw)' ],
 				justifyContent: 'center',
 				p: [ 20, 20, 30, 40 ],
-				alignItems: 'stretch'
+				alignItems: 'stretch',
+				position: 'relative',
+				zIndex: 1
 			}}>
 				{teamMembers.map((t, i) => (
 					<Box key={i} sx={{

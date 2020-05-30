@@ -12,25 +12,34 @@ import Carat from '../components/carat'
 export default function Index({ copy, capabilities, partners, locations, freeTheBidders, ftbRoles, emailSubjects, sectionBackgroundImages, introVideo }) {
 	return (
 		<Box className='home' sx={{
-			backgroundImage: 'url(\'/background-gradient.jpg\')',
-			backgroundAttachment: 'fixed',
-			backgroundSize: 'cover',
+			position: 'relative',
 			pb: [ 40, 40, 60, 80 ],
+			':before': {
+				content: '""',
+				position: 'fixed',
+				width: '100vw',
+				height: '100vh',
+				top: 0,
+				left: 0,
+				zIndex: 0,
+				backgroundImage: 'url(\'/background-gradient.jpg\')',
+				backgroundSize: 'auto 100vh',
+				backgroundPosition: 'top center',
+			},
 		}}>
 			<Box id='intro' sx={{
 				pt: 90,
-				// pb: 80,
 				maxHeight: 680,
 				overflow: 'hidden'
 			}}>
 				<IntroVideo videoSrc={introVideo.url} copy={copy[1].text} />
 			</Box>
 			<Box id='about' sx={{
-				// bg: 'white',
-				// p: [ 20, 20, 30, 40 ],
 				px: [ 20, 20, 30, 40 ],
 				pb: [ 20, 20, 30, 40 ],
-				pt: [ 40, 40, 60, 80 ] 
+				pt: [ 40, 40, 60, 80 ],
+				position: 'relative',
+				zIndex: 1
 			}}>
 				<Box sx={{
 					p: [ 20, 20, 30, 30 ],
@@ -76,7 +85,9 @@ export default function Index({ copy, capabilities, partners, locations, freeThe
 				</Box>
 			</Box>
 			<Box id='partners' sx={{
-				pt: 110
+				pt: 110,
+				position: 'relative',
+				zIndex: 1
 			}}>
 				<Partners
 					partners={partners}
@@ -88,7 +99,9 @@ export default function Index({ copy, capabilities, partners, locations, freeThe
 			</Box>
 			<Box sx={{
 				px: [ 20, 20, 30, 40 ],
-				pt: [ 20, 20, 30, 40 ]
+				pt: [ 20, 20, 30, 40 ],
+				position: 'relative',
+				zIndex: 1
 			}}>
 				<Box sx={{
 					bg: 'primaryO2',
@@ -104,7 +117,8 @@ export default function Index({ copy, capabilities, partners, locations, freeThe
 			</Box>
 			<Box id='contact' sx={{
 				pt: 110,
-				position: 'relative'
+				position: 'relative',
+				zIndex: 1
 			}}>
 				<Contact emailSubjects={emailSubjects} />
 			</Box>

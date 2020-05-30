@@ -17,6 +17,8 @@ export default function Footer() {
 			borderTopWidth: 2,
 			bg: 'white',
 			p: 10,
+			position: 'relative',
+			zIndex: 1
 			// mt: [ 40, 40, 60, 80 ]
 		}}>
 			<Flex sx={{
