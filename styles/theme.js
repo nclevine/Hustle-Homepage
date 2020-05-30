@@ -4,12 +4,18 @@ const theme = {
     dark: '#101010',
     light: '#efefef',
     gray: '#8e8e8e',
-    primary: '#d21997', 
-    primaryO1: '#d2199720',
-    primaryO2: '#d2199735',
-    primaryO3: '#d2199750',
-    primaryO4: '#d2199765',
-    primaryO5: '#d2199780',
+    primary: '#101010',
+    primaryO1: '#10101015',
+    primaryO2: '#10101030',
+    primaryO3: '#10101045',
+    primaryO4: '#10101060',
+    primaryO5: '#10101075',
+    // primary: '#d21997', 
+    // primaryO1: '#d2199720',
+    // primaryO2: '#d2199735',
+    // primaryO3: '#d2199750',
+    // primaryO4: '#d2199765',
+    // primaryO5: '#d2199780',
     secondary: '#4F0939',
   },
   fonts: {
@@ -155,7 +161,6 @@ const theme = {
       'input, select, textarea': {
         fontSize: [ 1 ],
         fontWeight: 'bold',
-        bg: 'white',
         borderRadius: 0,
         borderWidth: 2,
         borderStyle: 'solid',
@@ -164,15 +169,13 @@ const theme = {
         outline: 'none',
         transition: '0.2s',
         resize: 'none',
+        bg: 'primaryO3',
         ':hover': {
           borderColor: 'primary'
         },
         '&:focus': {
           color: 'dark',
-          bg: 'primaryO3',
-          '::placeholder': {
-            color: 'gray'
-          }
+          bg: 'white',
         },
         '::placeholder': {
           textTransform: 'uppercase',
@@ -182,20 +185,20 @@ const theme = {
       'input[type=submit]': {
         textTransform: 'uppercase',
         cursor: 'pointer',
-        // borderStyle: 'solid',
-        // borderWidth: 2,
-        // borderColor: 'transparent',
         width: '40%',
         minWidth: 'max-content',
         margin: '0 auto',
+        bg: 'light',
         ':hover': {
           color: 'primary',
+          bg: 'white'
         },
         ':disabled': {
           cursor: 'auto',
-          color: 'light',
+          color: 'primaryO3',
+          bg: 'primaryO3',
           ':hover': {
-            color: 'light',
+            color: 'primaryO3',
             borderColor: 'transparent'
           }
         }

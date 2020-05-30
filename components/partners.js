@@ -207,6 +207,9 @@ function PartnerCard({ partner, index, onClick }) {
 			sx={{
 				position: 'relative',
 				':hover': {
+					transform: 'scale(1.5)',
+					transition: '0.2s',
+					zIndex: 999,
 					'.partner-card-name': {
 						opacity: 1
 					}
@@ -233,10 +236,16 @@ function PartnerCard({ partner, index, onClick }) {
 				p: 2,
 				cursor: 'pointer',
 			}}>
-				<Heading variant='mHeading' sx={{
-					fontSize: [ 3, 3, 4, 5 ],
-					hyphens: 'auto'
-				}}>{partner.name}</Heading>
+				{partner.missionStatement ?
+					<Text sx={{
+						textAlign: 'center',
+						fontSize: [ 10, 10, 12, 12 ]
+					}}>{partner.missionStatement}</Text> :
+					<Heading variant='mHeading' sx={{
+						fontSize: [ 3, 3, 4, 5 ],
+						hyphens: 'auto'
+					}}>{partner.name}</Heading>
+				}
 				<Carat sx={{
 					position: 'absolute',
 					left: '50%',
@@ -425,6 +434,8 @@ function FreeTheBidCard({ freeTheBidder, index, onClick }) {
 					bg: 'white',
 					borderColor: 'primary',
 					color: 'primary',
+					transform: 'scale(1.5)',
+					zIndex: 999,
 					'.ftb-card-role': {
 						opacity: 0
 					},

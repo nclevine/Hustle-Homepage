@@ -17,7 +17,7 @@ export default function Footer() {
 			borderTopWidth: 2,
 			bg: 'white',
 			p: 10,
-			mt: [ 40, 40, 60, 80 ]
+			// mt: [ 40, 40, 60, 80 ]
 		}}>
 			<Flex sx={{
 				justifyContent: 'center',

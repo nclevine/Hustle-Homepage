@@ -14,7 +14,8 @@ function NavLink({ route, children, onClick }) {
 				textDecoration: 'none',
 				transition: '0.2s',
 				':hover': {
-					color: 'dark'
+					// color: 'dark'
+					color: 'transparent'
 				}
 			}
 		}}>
@@ -59,21 +60,32 @@ export default function Navigation({ isHome }) {
 				alignItems: 'flex-start',
 			}
 		}}>
-			<Box>
+			<Box sx={{
+				position: 'relative'
+			}}>
 				<NavLink route={router.pathname === '/' ? '#intro' : '/'} onClick={e => closeMobileNav(e)}>
 					<Logo sx={{
 						ml: [ 3 ],
 						width: 75,
-						transition: '0.3s ease',
+						transition: '0.2s',
 						'path': {
 							fill: 'primary',
-							transition: '0.2s'
 						},
 						':hover': {
-							'path': {
-								fill: 'dark'
-							}
+							// 'path': {
+							// 	// fill: 'dark'
+							// 	fill: 'url(#gradient)'
+							// }
+							opacity: 0
 						}
+					}} />
+					<Logo sx={{
+						position: 'absolute',
+						width: 75,
+						fill: 'url(#gradient)',
+						top: 0,
+						left: [ 3 ],
+						zIndex: -999
 					}} />
 				</NavLink>
 			</Box>
@@ -120,6 +132,13 @@ export default function Navigation({ isHome }) {
 				}} />)}
 			</Box>
 			<Flex sx={{
+				backgroundImage: 'url(/background-gradient.jpg)',
+				backgroundSize: '100vw',
+				'WebkitBackgroundClip': 'text',
+				backgroundClip: 'text',
+				backgroundColor: 'white',
+				color: 'transparent',
+				backgroundPosition: 'bottom left',
 				justifyContent: 'center',
 				'div': {
 					m: [ 1, 1, 2, 3 ],

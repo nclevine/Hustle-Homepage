@@ -61,7 +61,11 @@ export default function Contact({ emailSubjects }) {
 	}
 
 	return (
-		<Box sx={{pb: [ 20, 20, 30, 40 ]}}>
+		<Box sx={{
+			pb: [ 20, 20, 30, 40 ],
+			zIndex: 1,
+			position: 'relative'
+		}}>
 			<Heading variant='lHeading'>Contact Us</Heading>
 			{!emailSent ? 
 				<Box

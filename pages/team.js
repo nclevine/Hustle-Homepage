@@ -5,7 +5,8 @@ function TeamMember({ teamMember, index }) {
 	return (
 		<Box
 			className='team-member'
-			variant={'card' + (index % 3 * 2 + 1)}
+			// variant={'card' + (index % 3 * 2 + 1)}
+			variant={'card' + (index % 3 + 1)}
 			sx={{
 				p: [ 4 ],
 				height: '100%'
@@ -49,7 +50,11 @@ function TeamMember({ teamMember, index }) {
 export default function Team({ teamMembers }) {
 	return (
 		<Box sx={{
-			pt: 110
+			pt: 110,
+			pb: [ 40, 40, 60, 80 ],
+			backgroundImage: 'url(\'/background-gradient.jpg\')',
+			backgroundAttachment: 'fixed',
+			backgroundSize: 'cover'
 		}}>
 			<Heading variant='lHeading'>Our Team</Heading>
 			<Box className='team-members' sx={{
