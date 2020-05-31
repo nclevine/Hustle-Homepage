@@ -23,7 +23,8 @@ export default function Index({ copy, capabilities, partners, locations, freeThe
 				left: 0,
 				zIndex: 0,
 				backgroundImage: 'url(\'/background-gradient.jpg\')',
-				backgroundSize: 'auto 100vh',
+				// backgroundSize: 'auto 100vh',
+				backgroundSize: 'cover',
 				backgroundPosition: 'top center',
 			},
 		}}>
