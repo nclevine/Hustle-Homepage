@@ -14,7 +14,6 @@ function NavLink({ route, children, onClick }) {
 				textDecoration: 'none',
 				transition: '0.2s',
 				':hover': {
-					// color: 'dark'
 					color: 'transparent'
 				}
 			}
@@ -66,7 +65,7 @@ export default function Navigation({ isHome }) {
 				<NavLink route={router.pathname === '/' ? '#intro' : '/'} onClick={e => closeMobileNav(e)}>
 					<Logo sx={{
 						ml: [ 3 ],
-						width: 75,
+						width: [ 50, 50, 75, 75 ],
 						transition: '0.2s',
 						'path': {
 							fill: 'primary',
@@ -81,7 +80,7 @@ export default function Navigation({ isHome }) {
 					}} />
 					<Logo sx={{
 						position: 'absolute',
-						width: 75,
+						width: [ 50, 50, 75, 75 ],
 						fill: 'url(#gradient)',
 						top: 0,
 						left: [ 3 ],
@@ -93,7 +92,7 @@ export default function Navigation({ isHome }) {
 			<Box className='nav-mobile-hamburger' onClick={e => toggleMobileNav(e)} sx={{
 				display: 'none',
 				position: 'relative',
-				mt: 25,
+				mt: [ 15, 15, 25, 25 ],
 				mr: [ 3 ],
 				width: 20,
 				'div': {

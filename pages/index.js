@@ -33,7 +33,7 @@ export default function Index({ copy, capabilities, partners, locations, freeThe
 			},
 		}}>
 			<Box id='intro' sx={{
-				pt: 90,
+				pt: [ 68, 68, 90, 90 ],
 				maxHeight: 680,
 				overflow: 'hidden'
 			}}>

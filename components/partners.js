@@ -104,7 +104,7 @@ function PartnerModule({ partners, locations, capabilities }) {
 						}} sx={{
 							cursor: 'pointer'
 						}}>
-							LOCATION <Carat sx={{
+							TERRITORY <Carat sx={{
 								transform: locationFiltersExpanded ? 'rotate(180deg)' : '',
 							}} />
 						</Text>
@@ -207,11 +207,14 @@ function PartnerCard({ partner, index, onClick }) {
 			sx={{
 				position: 'relative',
 				':hover': {
-					transform: 'scale(1.5)',
 					transition: '0.2s',
 					zIndex: 999,
 					'.partner-card-name': {
-						opacity: 1
+						opacity: 1,
+						transform: 'scale(1.5)',
+						'@media screen and (max-width: 30em)': {
+							display: 'none'
+						}
 					}
 				}
 			}}
@@ -239,7 +242,7 @@ function PartnerCard({ partner, index, onClick }) {
 				{partner.missionStatement ?
 					<Text sx={{
 						textAlign: 'center',
-						fontSize: [ 10, 10, 12, 12 ]
+						fontSize: [ 10, 10, 10, 12 ]
 					}}>{partner.missionStatement}</Text> :
 					<Heading variant='mHeading' sx={{
 						fontSize: [ 3, 3, 4, 5 ],
@@ -314,7 +317,7 @@ function PartnerDetailCard({ partner, exit }) {
 					}}>
 						<Text variant='smallCaps' sx={{
 							fontSize: '8px'
-						}}>Locations:</Text>
+						}}>Territory:</Text>
 						{partner.locations.map((l, i) => (
 							<Text key={i} variant='smallCaps' sx={{
 								mt: 1,

@@ -50,7 +50,7 @@ function TeamMember({ teamMember, index }) {
 export default function Team({ teamMembers }) {
 	return (
 		<Box sx={{
-			pt: 110,
+			pt: [ 88, 88, 110, 110 ],
 			pb: [ 40, 40, 60, 80 ],
 			position: 'relative',
 			':before': {
