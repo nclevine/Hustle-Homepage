@@ -62,13 +62,18 @@ export default function Index({ copy, capabilities, partners, locations, freeThe
 					{wwaBullets.map((b, i) => (
 						<Text key={i} variant='largeCopyBullet' sx={{
 							color: 'primary',
-							textAlign: 'center',
+							textAlign: 'left',
+							position: 'relative'
 						}}>
 							<Carat sx={{
-								display: 'inline-block',
+								display: 'block',
 								width: [ 10, 10, 15, 15 ],
-								transform: 'translateX(-10px) rotate(-90deg)'
-							}} />{b.text}
+								transform: 'translateX(-10px) rotate(-90deg)',
+								position: 'absolute',
+								top: [ 10, 10, 20, 20 ],
+								left: [ 70, 70, 100, 120 ]
+							}} />
+							{b.text}
 						</Text>
 					))}
 					<Text variant='largeCopy' sx={{

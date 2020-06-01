@@ -94,7 +94,7 @@ const theme = {
       fontSize: [ 1, 2, 3, 4 ],
       lineHeight: '175%',
       pt: [ 10, 10, 15, 20 ],
-      px: [ 60, 60, 80, 100 ]
+      px: [ 80, 80, 110, 130 ]
     },
     smallCaps: {
       textTransform: 'uppercase',
