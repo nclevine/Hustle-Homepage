@@ -88,6 +88,14 @@ const theme = {
       py: [ 20, 20, 30, 40 ],
       px: [ 40, 40, 60, 80 ]
     },
+    largeCopyBullet: {
+      fontFamily: 'body',
+      fontWeight: 'bold',
+      fontSize: [ 1, 2, 3, 4 ],
+      lineHeight: '175%',
+      pt: [ 10, 10, 15, 20 ],
+      px: [ 60, 60, 80, 100 ]
+    },
     smallCaps: {
       textTransform: 'uppercase',
       fontSize: [ '10px', '12px', '12px', '12px' ],

@@ -10,6 +10,11 @@ import Divider from '../components/divider'
 import Carat from '../components/carat'
 
 export default function Index({ copy, capabilities, partners, locations, freeTheBidders, ftbRoles, emailSubjects, sectionBackgroundImages, introVideo }) {
+	const introCopy = copy.find(c => c.title.toLowerCase() === 'hello')
+	const wwaStart = copy.find(c => c.title.toLowerCase() === 'what we do start')
+	const wwaEnd = copy.find(c => c.title.toLowerCase() === 'what we do end')
+	const wwaBullets = copy.filter(c => c.title.toLowerCase().includes('bullet'))
+
 	return (
 		<Box className='home' sx={{
 			position: 'relative',
@@ -23,7 +28,6 @@ export default function Index({ copy, capabilities, partners, locations, freeThe
 				left: 0,
 				zIndex: 0,
 				backgroundImage: 'url(\'/background-gradient.jpg\')',
-				// backgroundSize: 'auto 100vh',
 				backgroundSize: 'cover',
 				backgroundPosition: 'top center',
 			},
@@ -33,7 +37,7 @@ export default function Index({ copy, capabilities, partners, locations, freeThe
 				maxHeight: 680,
 				overflow: 'hidden'
 			}}>
-				<IntroVideo videoSrc={introVideo.url} copy={copy[1].text} />
+				<IntroVideo videoSrc={introVideo.url} copy={introCopy.text} />
 			</Box>
 			<Box id='about' sx={{
 				px: [ 20, 20, 30, 40 ],
@@ -47,12 +51,31 @@ export default function Index({ copy, capabilities, partners, locations, freeThe
 					bg: 'primaryO2'
 				}}>
 					<Heading variant='mHeading' sx={{
-						color: 'dark'
+						color: 'dark',
+						pt: [ 20, 20, 30, 40 ]
 					}}>Who We Are</Heading>
 					<Text variant='largeCopy' sx={{
 						color: 'primary',
-						textAlign: 'center'
-					}}>{copy[0].text}</Text>
+						textAlign: 'center',
+						pb: [ 0, 0, 0, 0 ]
+					}}>{wwaStart.text}</Text>
+					{wwaBullets.map((b, i) => (
+						<Text key={i} variant='largeCopyBullet' sx={{
+							color: 'primary',
+							textAlign: 'center',
+						}}>
+							<Carat sx={{
+								display: 'inline-block',
+								width: [ 10, 10, 15, 15 ],
+								transform: 'translateX(-10px) rotate(-90deg)'
+							}} />{b.text}
+						</Text>
+					))}
+					<Text variant='largeCopy' sx={{
+						color: 'primary',
+						textAlign: 'center',
+						pt: [ 10, 10, 15, 20 ],
+					}}>{wwaEnd.text}</Text>
 					<Text sx={{
 						textAlign: 'center',
 						textTransform: 'uppercase',
