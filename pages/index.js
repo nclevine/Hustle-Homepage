@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { Box, Flex, Text, Heading, Image } from 'rebass'
 import { getCopy, getCapabilities, getPartners, getLocations, getFreeTheBidders, getFTBRoles, getAbbreviatedCapabilities, getSectionBackgroundImages, getIntroVideo } from '../lib/contentful-api'
-// import Intro from '../components/intro'
 import IntroVideo from '../components/introVideo'
 import CapabilityList from '../components/capabilityList'
 import Partners from '../components/partners'
@@ -22,6 +21,7 @@ export default function Index({ copy, capabilities, partners, locations, freeThe
 		}
 		return 0
 	})
+	const wwdCopy = copy.find(c => c.title.toLowerCase() === 'what we do')
 
 	return (
 		<Box className='home' sx={{
@@ -128,6 +128,41 @@ export default function Index({ copy, capabilities, partners, locations, freeThe
 					freeTheBidders={freeTheBidders}
 					ftbRoles={ftbRoles}
 				/>
+			</Box>
+			<Box id='wwd' sx={{
+				px: [ 20, 20, 30, 40 ],
+				pb: [ 20, 20, 30, 40 ],
+				pt: [ 40, 40, 60, 80 ],
+				position: 'relative',
+				zIndex: 1
+			}}>
+				<Box sx={{
+					p: [ 20, 20, 30, 30 ],
+					bg: 'primaryO2'
+				}}>
+					<Flex sx={{
+						p: [ 20, 20, 30, 40 ],
+						flexDirection: [ 'column', 'column', 'row', 'row' ]
+					}}>
+						<Heading variant='sHeading' sx={{
+							width: [ '100%', '100%', '45%', '45%'],
+							color: 'dark',
+							textAlign: [ 'center', 'center', 'left', 'left' ],
+							pb: [ 10, 10, 0, 0 ],
+							fontSize: [ 3, 3, 5, 6 ]
+						}}>
+							{wwdCopy.title}
+						</Heading>
+						<Text sx={{
+							width: [ '100%', '100%', '55%', '55%' ],
+							pl: [ 0, 0, 20, 30 ],
+							fontSize: [ 1, 2, 3, 4 ],
+							lineHeight: '175%'
+						}}>
+							{wwdCopy.text}
+						</Text>
+					</Flex>
+				</Box>
 			</Box>
 			<Box id='contact' sx={{
 				pt: 110,
