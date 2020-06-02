@@ -177,7 +177,7 @@ export default function Index({ copy, capabilities, partners, locations, freeThe
 
 Index.isHome = true
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
 	const copy = await getCopy()
 	const capabilities = await getCapabilities()
 	const partners = await getPartners()
