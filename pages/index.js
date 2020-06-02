@@ -14,6 +14,19 @@ export default function Index({ copy, capabilities, partners, locations, freeThe
 	const wwaStart = copy.find(c => c.title.toLowerCase() === 'what we do start')
 	const wwaEnd = copy.find(c => c.title.toLowerCase() === 'what we do end')
 	const wwaBullets = copy.filter(c => c.title.toLowerCase().includes('bullet'))
+	const wwaCopy = copy.filter(c => c.order > 0).sort((a, b) => {
+		const orderA = a.order
+		const orderB = b.order
+		if (orderA < orderB) {
+			return -1
+		}
+		if (orderA > orderB) {
+			return 1
+		}
+		return 0
+	})
+
+	console.log(wwaCopy)
 
 	return (
 		<Box className='home' sx={{
@@ -50,37 +63,32 @@ export default function Index({ copy, capabilities, partners, locations, freeThe
 					p: [ 20, 20, 30, 30 ],
 					bg: 'primaryO2'
 				}}>
-					<Heading variant='mHeading' sx={{
-						color: 'dark',
-						pt: [ 20, 20, 30, 40 ]
-					}}>Who We Are</Heading>
-					<Text variant='largeCopy' sx={{
-						color: 'primary',
-						textAlign: 'center',
-						pb: [ 0, 0, 0, 0 ]
-					}}>{wwaStart.text}</Text>
-					{wwaBullets.map((b, i) => (
-						<Text key={i} variant='largeCopyBullet' sx={{
-							color: 'primary',
-							textAlign: 'left',
-							position: 'relative'
-						}}>
-							<Carat sx={{
-								display: 'block',
-								width: [ 10, 10, 15, 15 ],
-								transform: 'translateX(-10px) rotate(-90deg)',
-								position: 'absolute',
-								top: [ 10, 10, 20, 20 ],
-								left: [ 70, 70, 100, 120 ]
-							}} />
-							{b.text}
-						</Text>
-					))}
-					<Text variant='largeCopy' sx={{
-						color: 'primary',
-						textAlign: 'center',
-						pt: [ 10, 10, 15, 20 ],
-					}}>{wwaEnd.text}</Text>
+					{
+						wwaCopy.map((c, i) => (
+							<Flex key={i} sx={{
+								p: [ 20, 20, 30, 40 ],
+								flexDirection: [ 'column', 'column', 'row', 'row' ]
+							}}>
+								<Heading variant='sHeading' sx={{
+									width: [ '100%', '100%', '45%', '45%'],
+									color: 'dark',
+									textAlign: [ 'center', 'center', 'left', 'left' ],
+									pb: [ 10, 10, 0, 0 ],
+									fontSize: [ 3, 3, 5, 6 ]
+								}}>
+									{c.title}
+								</Heading>
+								<Text sx={{
+									width: [ '100%', '100%', '55%', '55%' ],
+									pl: [ 0, 0, 20, 30 ],
+									fontSize: [ 1, 2, 3, 4 ],
+									lineHeight: '175%'
+								}}>
+									{c.text}
+								</Text>
+							</Flex>
+						))
+					}
 					<Text sx={{
 						textAlign: 'center',
 						textTransform: 'uppercase',
@@ -125,24 +133,6 @@ export default function Index({ copy, capabilities, partners, locations, freeThe
 					freeTheBidders={freeTheBidders}
 					ftbRoles={ftbRoles}
 				/>
-			</Box>
-			<Box sx={{
-				px: [ 20, 20, 30, 40 ],
-				pt: [ 20, 20, 30, 40 ],
-				position: 'relative',
-				zIndex: 1
-			}}>
-				<Box sx={{
-					bg: 'primaryO2',
-					mt: [ 40, 40, 60, 80 ]
-				}}>
-					<Heading variant='mHeading' sx={{
-						pt: [ 20, 20, 30, 40 ]
-					}}>
-						What We Do
-					</Heading>
-					<CapabilityList capabilities={capabilities} />
-				</Box>
 			</Box>
 			<Box id='contact' sx={{
 				pt: 110,

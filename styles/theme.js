@@ -77,7 +77,7 @@ const theme = {
       fontStyle: 'italic',
       fontSize: [ 5, 5, 6, 7 ],
       color: 'primary',
-      p: [ 20, 30, 40 ],
+      p: [ 20, 20, 30, 40 ],
       textAlign: 'center'
     },
     largeCopy: {
