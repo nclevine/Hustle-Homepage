@@ -10,7 +10,8 @@ import Carat from '../components/carat'
 
 export default function Index({ copy, capabilities, partners, locations, freeTheBidders, ftbRoles, emailSubjects, sectionBackgroundImages, introVideo }) {
 	const introCopy = copy.find(c => c.title.toLowerCase() === 'hello')
-	const wwaCopy = copy.filter(c => c.order > 0).sort((a, b) => {
+	const wwaCopy = copy.find(c => c.title.toLowerCase() === 'who we are')
+	const wwdCopy = copy.filter(c => c.order > 0).sort((a, b) => {
 		const orderA = a.order
 		const orderB = b.order
 		if (orderA < orderB) {
@@ -21,7 +22,6 @@ export default function Index({ copy, capabilities, partners, locations, freeThe
 		}
 		return 0
 	})
-	const wwdCopy = copy.find(c => c.title.toLowerCase() === 'what we do')
 
 	return (
 		<Box className='home' sx={{
@@ -58,32 +58,28 @@ export default function Index({ copy, capabilities, partners, locations, freeThe
 					p: [ 20, 20, 30, 30 ],
 					bg: 'primaryO2'
 				}}>
-					{
-						wwaCopy.map((c, i) => (
-							<Flex key={i} sx={{
-								p: [ 20, 20, 30, 40 ],
-								flexDirection: [ 'column', 'column', 'row', 'row' ]
-							}}>
-								<Heading variant='sHeading' sx={{
-									width: [ '100%', '100%', '45%', '45%'],
-									color: 'dark',
-									textAlign: [ 'center', 'center', 'left', 'left' ],
-									pb: [ 10, 10, 0, 0 ],
-									fontSize: [ 3, 3, 5, 6 ]
-								}}>
-									{c.title}
-								</Heading>
-								<Text sx={{
-									width: [ '100%', '100%', '55%', '55%' ],
-									pl: [ 0, 0, 20, 30 ],
-									fontSize: [ 1, 2, 3, 4 ],
-									lineHeight: '175%'
-								}}>
-									{c.text}
-								</Text>
-							</Flex>
-						))
-					}
+					<Flex sx={{
+						p: [ 20, 20, 30, 40 ],
+						flexDirection: [ 'column', 'column', 'row', 'row' ]
+					}}>
+						<Heading variant='sHeading' sx={{
+							width: [ '100%', '100%', '45%', '45%'],
+							color: 'dark',
+							textAlign: [ 'center', 'center', 'left', 'left' ],
+							pb: [ 10, 10, 0, 0 ],
+							fontSize: [ 3, 3, 5, 6 ]
+						}}>
+							{wwaCopy.title}
+						</Heading>
+						<Text sx={{
+							width: [ '100%', '100%', '55%', '55%' ],
+							pl: [ 0, 0, 20, 30 ],
+							fontSize: [ 1, 2, 3, 4 ],
+							lineHeight: '175%'
+						}}>
+							{wwaCopy.text}
+						</Text>
+					</Flex>
 					<Text sx={{
 						textAlign: 'center',
 						textTransform: 'uppercase',
@@ -140,28 +136,32 @@ export default function Index({ copy, capabilities, partners, locations, freeThe
 					p: [ 20, 20, 30, 30 ],
 					bg: 'primaryO2'
 				}}>
-					<Flex sx={{
-						p: [ 20, 20, 30, 40 ],
-						flexDirection: [ 'column', 'column', 'row', 'row' ]
-					}}>
-						<Heading variant='sHeading' sx={{
-							width: [ '100%', '100%', '45%', '45%'],
-							color: 'dark',
-							textAlign: [ 'center', 'center', 'left', 'left' ],
-							pb: [ 10, 10, 0, 0 ],
-							fontSize: [ 3, 3, 5, 6 ]
-						}}>
-							{wwdCopy.title}
-						</Heading>
-						<Text sx={{
-							width: [ '100%', '100%', '55%', '55%' ],
-							pl: [ 0, 0, 20, 30 ],
-							fontSize: [ 1, 2, 3, 4 ],
-							lineHeight: '175%'
-						}}>
-							{wwdCopy.text}
-						</Text>
-					</Flex>
+					{
+						wwdCopy.map((c, i) => (
+							<Flex key={i} sx={{
+								p: [ 20, 20, 30, 40 ],
+								flexDirection: [ 'column', 'column', 'row', 'row' ]
+							}}>
+								<Heading variant='sHeading' sx={{
+									width: [ '100%', '100%', '45%', '45%'],
+									color: 'dark',
+									textAlign: [ 'center', 'center', 'left', 'left' ],
+									pb: [ 10, 10, 0, 0 ],
+									fontSize: [ 3, 3, 5, 6 ]
+								}}>
+									{c.title}
+								</Heading>
+								<Text sx={{
+									width: [ '100%', '100%', '55%', '55%' ],
+									pl: [ 0, 0, 20, 30 ],
+									fontSize: [ 1, 2, 3, 4 ],
+									lineHeight: '175%'
+								}}>
+									{c.text}
+								</Text>
+							</Flex>
+						))
+					}
 				</Box>
 			</Box>
 			<Box id='contact' sx={{
