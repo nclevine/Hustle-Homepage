@@ -11,9 +11,6 @@ import Carat from '../components/carat'
 
 export default function Index({ copy, capabilities, partners, locations, freeTheBidders, ftbRoles, emailSubjects, sectionBackgroundImages, introVideo }) {
 	const introCopy = copy.find(c => c.title.toLowerCase() === 'hello')
-	const wwaStart = copy.find(c => c.title.toLowerCase() === 'what we do start')
-	const wwaEnd = copy.find(c => c.title.toLowerCase() === 'what we do end')
-	const wwaBullets = copy.filter(c => c.title.toLowerCase().includes('bullet'))
 	const wwaCopy = copy.filter(c => c.order > 0).sort((a, b) => {
 		const orderA = a.order
 		const orderB = b.order
@@ -25,8 +22,6 @@ export default function Index({ copy, capabilities, partners, locations, freeThe
 		}
 		return 0
 	})
-
-	console.log(wwaCopy)
 
 	return (
 		<Box className='home' sx={{
