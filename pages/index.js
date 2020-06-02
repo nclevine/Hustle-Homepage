@@ -8,7 +8,7 @@ import Contact from '../components/contact'
 import Divider from '../components/divider'
 import Carat from '../components/carat'
 
-export default function Index({ copy, capabilities, partners, locations, freeTheBidders, ftbRoles, emailSubjects, sectionBackgroundImages, introVideo }) {
+function Index({ copy, capabilities, partners, locations, freeTheBidders, ftbRoles, emailSubjects, sectionBackgroundImages, introVideo }) {
 	const introCopy = copy.find(c => c.title.toLowerCase() === 'hello')
 	const wwaCopy = copy.find(c => c.title.toLowerCase() === 'who we are')
 	const wwdCopy = copy.filter(c => c.order > 0).sort((a, b) => {
@@ -177,7 +177,7 @@ export default function Index({ copy, capabilities, partners, locations, freeThe
 
 Index.isHome = true
 
-export async function getStaticProps() {
+Index.getInitialProps = async function() {
 	const copy = await getCopy()
 	const capabilities = await getCapabilities()
 	const partners = await getPartners()
@@ -188,7 +188,23 @@ export async function getStaticProps() {
 	const sectionBackgroundImages = await getSectionBackgroundImages()
 	const introVideo = await getIntroVideo()
 
-	return {
-		props: { copy, capabilities, partners, locations, freeTheBidders, ftbRoles, emailSubjects, sectionBackgroundImages, introVideo }
-	}
+	return { copy, capabilities, partners, locations, freeTheBidders, ftbRoles, emailSubjects, sectionBackgroundImages, introVideo }
 }
+
+export default Index
+
+// export async function getStaticProps() {
+// 	const copy = await getCopy()
+// 	const capabilities = await getCapabilities()
+// 	const partners = await getPartners()
+// 	const locations = await getLocations()
+// 	const freeTheBidders = await getFreeTheBidders()
+// 	const ftbRoles = await getFTBRoles()
+// 	const emailSubjects = await getAbbreviatedCapabilities()
+// 	const sectionBackgroundImages = await getSectionBackgroundImages()
+// 	const introVideo = await getIntroVideo()
+
+// 	return {
+// 		props: { copy, capabilities, partners, locations, freeTheBidders, ftbRoles, emailSubjects, sectionBackgroundImages, introVideo }
+// 	}
+// }
