@@ -62,7 +62,7 @@ export default function Team({ teamMembers }) {
 				left: 0,
 				zIndex: 0,
 				backgroundImage: 'url(\'/background-gradient.jpg\')',
-				backgroundSize: 'auto 100vh',
+				backgroundSize: 'cover',
 				backgroundPosition: 'top center',
 			},
 		}}>
