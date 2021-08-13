@@ -16,7 +16,7 @@
     "contentful": "^7.14.4",
     "emailjs-com": "^2.4.1",
     "emotion-theming": "^10.0.27",
-    "next": "^9.3.6",
+    "next": "^11.1.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "rebass": "^4.0.7"
